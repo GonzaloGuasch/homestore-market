@@ -8,7 +8,20 @@ export default function Header(){
        <div className="header-container">
            <div className="image-logo-container">
                <img src={pseudoLogo} className="logo-container"/></div>
-           <div>NavBar</div>
+           <div className="navBar-container"><input type="text" 
+                       className="searchbar-container"
+                       placeholder="Busca nuestros productos"/>
+                       <div className="contacto-container">
+                           Contactar
+                       </div>
+                       <div className="telefono-container">
+                          5555-5555
+                       </div>
+                       <div className="carrito-container">
+                           Carrito/0$
+                       </div>
+         
+          </div>
        </div>
    
     )
