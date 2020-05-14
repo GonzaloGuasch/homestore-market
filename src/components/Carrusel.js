@@ -13,6 +13,8 @@ export default function Carrusel(){
       className="d-block w-100"
       src={bravo}
       alt="First slide"
+      height="300px"
+      width="400px"
     />
     <Carousel.Caption>
     </Carousel.Caption>
@@ -22,6 +24,8 @@ export default function Carrusel(){
       className="d-block w-100"
       src={bravo}
       alt="Third slide"
+      height="300px"
+      width="400px"
     />
 
     <Carousel.Caption>
@@ -32,6 +36,8 @@ export default function Carrusel(){
       className="d-block w-100"
       src={bravo}
       alt="Third slide"
+      height="300px"
+      width="400px"
     />
     <Carousel.Caption>
     </Carousel.Caption>
