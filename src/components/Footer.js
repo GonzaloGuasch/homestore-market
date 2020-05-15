@@ -8,8 +8,8 @@ export default function Footer(){
         <div className="footer-container">
             <div>
             <p>CONTACTO</p>
-                <div><img src={cell} className="icon-container"></img>CEL/TEL</div>
-                <div><img src={email} className="icon-container"></img> EMAIL</div>
+                <div><img src={cell} className="icon-container" alt="cellphone"></img>CEL/TEL</div>
+                <div><img src={email} className="icon-container" alt="email" ></img> EMAIL</div>
                 
             </div>
             <div>
