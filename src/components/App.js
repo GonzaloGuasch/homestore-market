@@ -15,7 +15,7 @@ export default class App extends React.Component {
   render(){
   return (
     <Fragment>     
-       <Header></Header>
+       <Header ></Header>
        <BarraBusqueda></BarraBusqueda>
        <Carrusel></Carrusel>
        <div className="categorias-de-app">

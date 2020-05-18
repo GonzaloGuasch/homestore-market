@@ -9,6 +9,10 @@ export default class Carrito extends React.Component{
         this.state={
             valor: 0,
         }
+        this.volverAInicio = this.volverAInicio.bind(this)
+    }
+    volverAInicio(){
+        console.log(this.props.history.push("/"))
     }
 
     render() {
@@ -24,7 +28,10 @@ export default class Carrito extends React.Component{
                    
                </div>
                <div className="seguir-comprando-button-div">
-               <input type="button" value="Volver a tienda" className="seguir-comprando-button-input"/>
+               <input type="button" 
+               value="Volver a tienda" 
+               className="seguir-comprando-button-input"
+               onClick={this.volverAInicio}/>
                </div>
             </div>
         );
