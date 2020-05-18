@@ -4,6 +4,7 @@ import '../css/Golosinas.css'
 import axios from 'axios'
 import BarraBusqueda from './BarraBusqueda'
 import UnProducto from './UnProducto.js'
+import Footer from './Footer'
 
 export default class Golosinas extends React.Component{
     constructor(props){
@@ -41,6 +42,7 @@ export default class Golosinas extends React.Component{
         </div>
         </div>
         {this.state.golosinas}
+        
        </Fragment>
     )}
 }
