@@ -1,0 +1,37 @@
+.info-producto-container{
+    margin-top: 50px;
+}
+
+.contador-boton-container{
+    display: flex;
+    margin-top: 10px;
+}
+
+.Agregar-boton{
+    margin-left: 15px;
+    border-radius: 8px;
+    border-style: solid;
+    font-weight: 600;
+    background-color: #feae17;
+    border-color: #f1a516;
+    color:white;
+    transition: all 0.5s ease-in-out;
+}
+
+.Agregar-boton:hover{
+    background-color: #ab7324;
+}
+
+.descripcion-container{
+    color:#b2b2d0
+}
+
+.nombre-container{
+    color:#617d43;
+    text-transform: lowercase;
+    
+}
+.valor-container{
+    margin-top: 10px;
+    font-weight: 660;
+}

@@ -35,13 +35,21 @@ export default class Golosinas extends React.Component{
         <BarraBusqueda></BarraBusqueda>
         <div className="header-container">
         <div className="path">
-            <a href={"/Inicio"}>Inicio</a> / Golosinas
+            <a href={"/"}>Inicio</a> / Golosinas
         </div>
         <div className="Resultados">
             Resultados: {this.state.resultado}
         </div>
         </div>
+        <div className="header-container">       
+            <div className="categorias-de-categoria">CATEGORIAS</div>
+        <div className="">
         {this.state.golosinas}
+        {this.state.golosinas}
+        {this.state.golosinas}
+        </div>
+        </div>
+
         
        </Fragment>
     )}
