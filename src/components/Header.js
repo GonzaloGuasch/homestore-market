@@ -42,7 +42,7 @@ actualizarBusqueda(event){
                        </div>
                        <div className="carrito-container">
                        <img src={carrito} className="logo-email"></img>
-                           Carrito/0$
+                           <a href="/Carrito">Carrito</a>
                        </div>
          
           </div>

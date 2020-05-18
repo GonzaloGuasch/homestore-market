@@ -1,0 +1,36 @@
+.tittle-carrito{
+    margin-top: 30px;
+    margin-left: 180px;
+    color: #555555;
+    font-weight: 500;
+    font-size: 27px;
+}
+
+.display-mensaje-carrito-vacio{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    color:#777799;
+
+    font-size: 19px;
+}
+
+.seguir-comprando-button-div{
+    text-align: center;
+}
+
+.seguir-comprando-button-input{
+    background-color: #feae17;
+    color: white;
+    font-weight: 670;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+
+    padding: 7px 7px 7px 7px;
+    transition: all 0.3s ;
+}
+
+.seguir-comprando-button-input:hover{
+    background-color: #ab7324;
+}
