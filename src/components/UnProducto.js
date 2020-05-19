@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/UnProducto.css'
 import turro from '../images/4013.JPG'
+import axios from 'axios'
 
 export default class UnProducto extends React.Component{
     constructor(props){
@@ -12,10 +13,29 @@ export default class UnProducto extends React.Component{
         this.add = this.add.bind(this)
         this.remove = this.remove.bind(this)
         this.agregarACarrito = this.agregarACarrito.bind(this)
+        this.mostrarResultado = this.mostrarResultado.bind(this)
+        this.mostrarError = this.mostrarError.bind(this)
+    }
+    mostrarResultado(res){
+        alert("Producto agregado al carrito!")
+        this.setState({
+            value: 0
+        })
+
+        console.log(this.state.info)
+    }
+    mostrarError(res){
+        alert("No se pudo agregar, intente nuevamente")
     }
     agregarACarrito(){
         if(this.state.value === 0){
             alert("No elegiste la cantidad que queres :)")
+        }else{
+            axios.post('http://localhost:8080/ListaProducto/AgregarALista', {
+                'idProducto': this.state.info.id,
+                'cantidad': this.state.value
+            }).then(res => this.mostrarResultado(res))
+              .catch(res => this.mostrarError(res))
         }
 
         localStorage.setItem('valor', this.state.value);
