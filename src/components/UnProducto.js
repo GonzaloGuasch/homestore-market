@@ -62,10 +62,8 @@ export default class UnProducto extends React.Component{
                 {this.state.info.nombre}   
                 </div>
                 <div className="valor-container">
-                    $55
+                    ${this.state.info.precio}
                 </div>
-
-                
                 <div className="contador-container">
                 <input type="button" value="+" className="adder" onClick={this.add}></input>       
                 <div className="value-container">

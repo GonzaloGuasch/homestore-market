@@ -41,6 +41,7 @@
     padding-bottom: 5px;
     transition: all 0.9s;
     margin-top: 10px;
+    border-style: solid;
 }
 
 .ver-mas-button:hover{

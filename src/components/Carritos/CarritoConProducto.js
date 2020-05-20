@@ -4,7 +4,6 @@ import Header from '../Header'
 import BarraBusqueda from '../BarraBusqueda'
 import '../../css/CarritoConProducto.css'
 import ProductoEnCarro from '../ProductoEnCarro'
-import UnProducto from '../UnProducto'
 
 
 export default class CarritoConProducto extends React.Component{
@@ -18,6 +17,7 @@ export default class CarritoConProducto extends React.Component{
         this.borrarTodo = this.borrarTodo.bind(this)
         this.updetearValor = this.updetearValor.bind(this)
         this.joinList = this.joinList.bind(this)
+        this.volverAComprar = this.volverAComprar.bind(this)
     }
     componentDidMount(){
         axios.get('http://localhost:8080/ListaProducto/TodosLosProductosDeCarrito/0').then(res => this.actualizarCarrito(res.data))
@@ -40,6 +40,9 @@ export default class CarritoConProducto extends React.Component{
     borrarTodo(){
        axios.post('http://localhost:8080/ListaProducto//BorrarTodosLosProductos/0').then(res => this.updetearValor(res))
     }
+    volverAComprar(){
+        this.props.history.push('/')
+    }
     updetearValor(res){
         window.location.reload();
     }
@@ -51,15 +54,18 @@ export default class CarritoConProducto extends React.Component{
             <div>
                  <Header></Header>
                 <BarraBusqueda></BarraBusqueda>
+                carrito: {this.state.productos.length}
                 <div className="carrito-cuadro-container">
                     <div className="columna-producto">PRODUCTO</div>
                     <div className="columna">PRECIO</div>
                     <div className="columna">CANTIDAD</div>
                     <div className="columna">TOTAL</div>
-                    {producotsEnCarro}
                 </div>
-                carrito: {this.state.productos.length}
+                {producotsEnCarro}
+                <div>
                 <input type="button" value="borrar todo" onClick={this.borrarTodo} className="borrar-boton-carrito"/>
+                <input type="button" value="Volver a comprar" onClick={this.volverAComprar} className="volver-boton-carrito"/>
+                </div>
             </div>
         );
     }

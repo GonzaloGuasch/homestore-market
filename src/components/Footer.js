@@ -2,6 +2,8 @@ import React from 'react'
 import '../css/footer.css'
 import email from '../images/email.svg'
 import cell from '../images/phone.svg'
+import facebook from '../images/faibu.png'
+import instagram from '../images/ig.png'
 
 export default function Footer(){
     return(
@@ -14,8 +16,10 @@ export default function Footer(){
             </div>
             <div>
             <p>REDES</p>
-                <div>I</div>
-                <div>F</div>
+                <div><a href="https://www.instagram.com/" target="_blank">
+                    <img src={instagram} height="20px"/></a> Seguinos en instagram!</div>
+                <div><a href="https://www.facebook.com/" target="_blank">
+                    <img src={facebook} height="20px"/></a> Seguinos en facebook!</div>
             </div>
             <div>
             <p>DIRECCION</p>

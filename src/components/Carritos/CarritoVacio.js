@@ -12,7 +12,7 @@ export default class Carrito extends React.Component{
         this.volverAInicio = this.volverAInicio.bind(this)
     }
     volverAInicio(){
-        console.log(this.props.history.push("/"))
+      this.props.history.push("/")
     }
 
     render() {

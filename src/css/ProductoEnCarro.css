@@ -1,0 +1,26 @@
+.producto-en-carro-description{
+    display: flex;
+    margin-left: 120px;
+    width: 450px;
+    margin-top: 30px;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid #ececec;
+}
+
+.produto-en-carro-precio{
+    margin-left: 50px;
+    color:#5c9971;
+    font-weight: 450;
+}
+
+.cantidad-en-carro{
+    margin-left: 75px;
+}
+
+.precioTotal-en-carro{
+    margin-left: 80px;
+}
+
+.nombreDeProducto{
+    width: 200px;
+}
