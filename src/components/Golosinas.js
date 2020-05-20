@@ -45,8 +45,6 @@ export default class Golosinas extends React.Component{
             <div className="categorias-de-categoria">CATEGORIAS</div>
         <div className="todos-los-productos">
         {this.state.golosinas}
-        {this.state.golosinas}
-        {this.state.golosinas}
         </div>
         </div>
 

@@ -1,3 +1,22 @@
 .borrar-boton-carrito{
     
 }
+
+.carrito-cuadro-container{
+    display: flex;
+    margin-top: 80px;
+    margin-left: 120px;
+    padding-bottom: 7px;
+    border-bottom: 3px solid #ececec;
+    color:#77778c;
+    width: 460px;
+}
+
+.columna-producto{
+    margin-right: 140px;
+    
+}
+
+.columna{
+    margin-right: 30px;
+}
