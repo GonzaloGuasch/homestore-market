@@ -4,6 +4,7 @@ import pseudoLogo from '../images/23f.jpg'
 import email from '../images/email.svg'
 import phone from '../images/phone.svg'
 import carrito from '../images/carrito.svg'
+import axios from 'axios'
 
 export default class Header extends React.Component{
     constructor(props){
@@ -12,13 +13,18 @@ export default class Header extends React.Component{
         busquedaProducto: ''
     };
     this.actualizarBusqueda = this.actualizarBusqueda.bind(this)
+    this.buscar = this.buscar.bind(this)
 }
 
 actualizarBusqueda(event){
     this.setState({ 
         busquedaProducto: event.target.value 
     })
-    console.log(this.busquedaProducto)
+}
+buscar(event){
+    if(event.key == 'Enter'){
+        axios.get('')
+    }
 }
 
 
@@ -27,11 +33,13 @@ actualizarBusqueda(event){
          <div className="header-container">
            <div className="image-logo-container">
                <img src={pseudoLogo} className="logo-container"/></div>
-           <div className="navBar-container"><input type="text" 
+           <div className="navBar-container">
+               <input type="text" 
                        className="searchbar-container"
-                       placeholder="Busca nuestros productos"
+                       placeholder="Busca otros productos"
                        value={this.state.busquedaProducto}
-                       onChange={this.actualizarBusqueda}/>
+                       onChange={this.actualizarBusqueda}
+                       onKeyDown={this.buscar}/>
                        <div className="contacto-container">
                            <img src={email} className="logo-email"></img>
                            Contactar

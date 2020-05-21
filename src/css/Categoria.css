@@ -1,8 +1,7 @@
 .categoria-container{
     text-transform: uppercase;
     font-weight: bolder;
-    background-color: black;
-    color: white;
+    color: black;
     margin-top: 65px;
     margin-right: 16px;
     margin-left: 15px;
@@ -12,6 +11,11 @@
     height: 160px;
     transition: all .4s ease-in-out;
     font-size: 20px;
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
+
+    background-image: url('../images/golosina3.jpg');
 
 }
 
@@ -25,6 +29,9 @@
     -webkit-box-shadow: 1px 3px 15px 8px rgba(0,0,0,0.75);
     -moz-box-shadow: 1px 3px 15px 8px rgba(0,0,0,0.75);
     box-shadow: 1px 3px 15px 8px rgba(0,0,0,0.75);
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 
 
@@ -42,6 +49,9 @@
     transition: all 0.9s;
     margin-top: 10px;
     border-style: solid;
+
+  
+    -webkit-text-stroke-color: none;
 }
 
 .ver-mas-button:hover{

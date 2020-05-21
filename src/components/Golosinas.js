@@ -17,6 +17,8 @@ export default class Golosinas extends React.Component{
     }
     componentDidMount(){
         axios.get('http://localhost:8080/Producto/traerTodos').then(res => this.montarProductos(res.data))
+        //TO DO sacar el endpoint de todos y poner el de la categoria que pasamos por props 
+        //asi tengo todas las categorias y uso el mismo componente
     }
 
     montarProductos(elementos){
@@ -46,7 +48,7 @@ export default class Golosinas extends React.Component{
         <div className="todos-los-productos">
         {this.state.golosinas}
         </div>
-        </div>
+               </div>
 
         
        </Fragment>

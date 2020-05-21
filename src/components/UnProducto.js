@@ -1,45 +1,44 @@
 import React from 'react'
 import '../css/UnProducto.css'
 import turro from '../images/4013.JPG'
-import axios from 'axios'
 
 export default class UnProducto extends React.Component{
     constructor(props){
         super(props)
         this.state={
             value: 0,
-            info: props.info
+            info: props.info,
         }
         this.add = this.add.bind(this)
         this.remove = this.remove.bind(this)
         this.agregarACarrito = this.agregarACarrito.bind(this)
-        this.mostrarResultado = this.mostrarResultado.bind(this)
-        this.mostrarError = this.mostrarError.bind(this)
-    }
-    mostrarResultado(res){
-        alert("Producto agregado al carrito!")
-        this.setState({
-            value: 0
-        })
+        this.updetearCarrito = this.updetearCarrito.bind(this)
 
-        console.log(this.state.info)
     }
-    mostrarError(res){
-        alert("No se pudo agregar, intente nuevamente")
-    }
+  
     agregarACarrito(){
         if(this.state.value === 0){
-            alert("No elegiste la cantidad que queres :)")
-        }else{
-            axios.post('http://localhost:8080/ListaProducto/AgregarALista', {
-                'idProducto': this.state.info.id,
-                'cantidad': this.state.value
-            }).then(res => this.mostrarResultado(res))
-              .catch(res => this.mostrarError(res))
+            alert("No selecionaste la cantidad que querias!")
+        }else{ 
+            this.updetearCarrito()
+            this.setState({
+                value: 0
+            })
+            alert("Se agrego tu producto al carrito!")
         }
-
-        localStorage.setItem('valor', this.state.value);
     }
+    updetearCarrito() {
+        if (localStorage.getItem(this.state.info.id)) {
+            let valoresDeProducto = localStorage.getItem(this.state.info.id)
+            valoresDeProducto = parseInt(valoresDeProducto) + parseInt(this.state.value)
+            localStorage.setItem(this.state.info.id, valoresDeProducto)
+            console.log(localStorage.getItem(this.state.info.id))
+        }
+        else {
+            localStorage.setItem(this.state.info.id, this.state.value)
+        }
+    }
+
     add(){
         this.setState({
             value: this.state.value + 1 
@@ -77,7 +76,6 @@ export default class UnProducto extends React.Component{
                         className="Agregar-boton" 
                         onClick={this.agregarACarrito}/>
                 </div>
-               
             </div>
         )
     }

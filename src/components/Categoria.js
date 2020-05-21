@@ -1,7 +1,5 @@
 import React from 'react'
 import '../css/Categoria.css'
-import golosina from '../images/golosina.jpg'
-
 
 export default class Categoria extends React.Component{
     constructor(props){

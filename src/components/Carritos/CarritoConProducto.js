@@ -1,9 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import Header from '../Header'
 import BarraBusqueda from '../BarraBusqueda'
 import '../../css/CarritoConProducto.css'
 import ProductoEnCarro from '../ProductoEnCarro'
+import axios from 'axios'
 
 
 export default class CarritoConProducto extends React.Component{
@@ -11,16 +11,29 @@ export default class CarritoConProducto extends React.Component{
         super(props);
         this.state={
             productos: [],
-            amount: 0
+            amount: 0,
+            keys: []
         }
         this.actualizarCarrito = this.actualizarCarrito.bind(this)
         this.borrarTodo = this.borrarTodo.bind(this)
         this.updetearValor = this.updetearValor.bind(this)
         this.joinList = this.joinList.bind(this)
         this.volverAComprar = this.volverAComprar.bind(this)
+        this.buscarProductoPorID = this.buscarProductoPorID.bind(this)
+        this.agregarProducto = this.agregarProducto.bind(this)
     }
     componentDidMount(){
-        axios.get('http://localhost:8080/ListaProducto/TodosLosProductosDeCarrito/0').then(res => this.actualizarCarrito(res.data))
+        Object.keys(localStorage).map(unIdDeProducto => this.buscarProductoPorID(unIdDeProducto))
+    }
+    buscarProductoPorID(idDeProducto){
+        axios.get('http://localhost:8080/Producto/getProducto/' + idDeProducto).then(res => this.agregarProducto(res.data, localStorage.getItem(idDeProducto)))
+    }
+
+    agregarProducto(unProducto, cantidadEnCarro){
+        const unProductoConCantidadEnCarro = Object.assign(unProducto, {'cantidad': cantidadEnCarro})
+        this.setState({ 
+            productos: this.state.productos.concat([unProductoConCantidadEnCarro])
+          })
     }
     actualizarCarrito(valorProducto){
        const productos = Object.keys(valorProducto);
@@ -29,6 +42,7 @@ export default class CarritoConProducto extends React.Component{
         this.setState({  
             productos:  this.joinList(productos, amount),
         })
+        
     }
     joinList(productos, valor){
         const res = []
@@ -38,7 +52,7 @@ export default class CarritoConProducto extends React.Component{
         return res
     }
     borrarTodo(){
-       axios.post('http://localhost:8080/ListaProducto//BorrarTodosLosProductos/0').then(res => this.updetearValor(res))
+       console.log(this.state.productos)
     }
     volverAComprar(){
         this.props.history.push('/')
@@ -48,7 +62,7 @@ export default class CarritoConProducto extends React.Component{
     }
     render() {
       const producotsEnCarro = this.state.productos.map((UnProducto, i) => 
-            <ProductoEnCarro id={UnProducto}/>)
+            <ProductoEnCarro info={UnProducto}/>)
      
         return (
             <div>
