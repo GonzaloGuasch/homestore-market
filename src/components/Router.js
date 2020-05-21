@@ -2,8 +2,8 @@ import React from 'react'
 import App from './App'
 import Golosinas from './Golosinas'
 import { BrowserRouter, Route, Switch} from 'react-router-dom'
-import Carrito from './Carritos/CarritoVacio'
 import CarroContainer from './Carritos/CarritoContainer'
+import Prueba from './Prueba'
 
 export default function Router(){
     return(
