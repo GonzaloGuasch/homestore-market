@@ -15,6 +15,7 @@ export default class Header extends React.Component{
     };
     this.actualizarBusqueda = this.actualizarBusqueda.bind(this)
     this.buscar = this.buscar.bind(this)
+    this.mostarBusquedaProducto = this.mostarBusquedaProducto.bind(this)
 }
 
 actualizarBusqueda(event){
@@ -24,8 +25,18 @@ actualizarBusqueda(event){
 }
 buscar(event){
     if(event.key == 'Enter'){
-        axios.get('')
+        if(this.state.busquedaProducto === ''){
+            alert("No buscaste ningun producto!")
+        }
+        axios.get('http://localhost:8080/Producto/productosQueContengan/' + this.state.busquedaProducto).then(res => this.mostarBusquedaProducto(res.data))
     }
+}
+
+mostarBusquedaProducto(productosEncontrados){
+   this.props.history.push({
+    pathname: "/ResultadoBusqueda", 
+    state: {productos: productosEncontrados}}
+       )
 }
 
 

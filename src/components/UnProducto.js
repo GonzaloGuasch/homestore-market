@@ -53,7 +53,9 @@ export default class UnProducto extends React.Component{
     render(){
         return(
             <div className="info-producto-container">
-                <img src={turro} height="50"/>
+                <div className="image-button-container">
+                    <img src={turro} className="image-producto"/>
+                </div>
                 <div className="descripcion-container">
                  Descripcion
                 </div>

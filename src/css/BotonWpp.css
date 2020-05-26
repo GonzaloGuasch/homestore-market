@@ -1,0 +1,12 @@
+.wpp-boton{
+    background-color: #81d742;
+    color: white;
+    border-style: none;
+    border-radius: 30px;
+
+    padding: 5px 15px 10px 15px;
+
+    position: fixed;
+    bottom: 2%;
+    right: 2%; 
+}

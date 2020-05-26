@@ -1,6 +1,7 @@
 import React from 'react'
 import CarritoVacio from './CarritoVacio'
 import CarritoConProducto from './CarritoConProducto'
+import Boton from '../WppButton'
 
 export default class CarritoContainer extends React.Component{
     constructor(props) {
@@ -17,6 +18,7 @@ export default class CarritoContainer extends React.Component{
         return (
             <div>
                {carrito}
+               <Boton></Boton>
             </div>
         );
     }

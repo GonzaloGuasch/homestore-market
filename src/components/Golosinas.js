@@ -4,7 +4,7 @@ import '../css/Golosinas.css'
 import axios from 'axios'
 import BarraBusqueda from './BarraBusqueda'
 import UnProducto from './UnProducto.js'
-
+import Boton from '../components/WppButton'
 
 export default class Golosinas extends React.Component{
     constructor(props){
@@ -43,16 +43,21 @@ export default class Golosinas extends React.Component{
 
    cargarProductoDePaginaAnterior(){
     axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida - 1) * 9).then(res => this.montarProductos(res.data))
-    this.setState({
-        ultimaPaginaVistida: this.state.ultimaPaginaVistida - 1
-    })
-}
+        if(this.state.ultimaPaginaVistida > 0){
+            this.setState({
+                ultimaPaginaVistida: this.state.ultimaPaginaVistida - 1
+            })
+        }   
+    }
    cargarProductoDePaginaSiguiente(){
     axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida + 1) * 9).then(res => this.montarProductos(res.data))
-    this.setState({
-        ultimaPaginaVistida: this.state.ultimaPaginaVistida + 1
-    })
+        if(this.state.ultimaPaginaVistida < 3){
+            this.setState({
+                ultimaPaginaVistida: this.state.ultimaPaginaVistida + 1
+            })
+        }
     }
+
    render(){
         const golosinasTuplas = []
         this.state.golosinas.forEach((unGolosina, index) => {
@@ -84,15 +89,14 @@ export default class Golosinas extends React.Component{
             </div>
         </div>
             <div className="paginador">
-                <input type="button" value="<" onClick={this.cargarProductoDePaginaAnterior}/> 
-                <input type="button" value="1" onClick={e => this.cargarProductos(1)}/>
-                <input type="button" value="2" onClick={e => this.cargarProductos(2)}/>
-                <input type="button" value="3" onClick={e => this.cargarProductos(3)}/>
-                <input type="button" value=">" onClick={this.cargarProductoDePaginaSiguiente}/>
+                <input type="button" value="<" className="button-paginado" onClick={this.cargarProductoDePaginaAnterior}/> 
+                <input type="button" value="1" className="button-paginado" onClick={e => this.cargarProductos(1)}/>
+                <input type="button" value="2" className="button-paginado" onClick={e => this.cargarProductos(2)}/>
+                <input type="button" value="3" className="button-paginado" onClick={e => this.cargarProductos(3)}/>
+                <input type="button" value=">" className="button-paginado" onClick={this.cargarProductoDePaginaSiguiente}/>
             </div>
-              
 
-        
+            <Boton></Boton>
        </Fragment>
     )}
 }
