@@ -11,14 +11,19 @@ export default class Golosinas extends React.Component{
         super(props)
         this.state = {
             golosinas: [],
-            resultado: 0
+            resultado: 0,
+            ultimaPaginaVistida: 0
         }
         this.montarProductos = this.montarProductos.bind(this)
+        this.cargarProductos = this.cargarProductos.bind(this)
+        this.cargarProductoDePaginaAnterior = this.cargarProductoDePaginaAnterior.bind(this)
+        this.cargarProductoDePaginaSiguiente = this.cargarProductoDePaginaSiguiente.bind(this)
     }
     componentDidMount(){
-        axios.get('http://localhost:8080/Producto/traerTodos').then(res => this.montarProductos(res.data))
+        axios.get('http://localhost:8080/Producto/traerTodos/0').then(res => this.montarProductos(res.data))
         //TO DO sacar el endpoint de todos y poner el de la categoria que pasamos por props 
-        //asi tengo todas las categorias y uso el mismo componente
+        //asi tengo todas las categorias y uso el mismo component
+        //axios.get('http://localhost:8080/Producto/TraerDeRubro/{RUBRO}') => anda ya voh
     }
 
     montarProductos(elementos){
@@ -29,8 +34,26 @@ export default class Golosinas extends React.Component{
             resultado: longitud
         })
     }
-   
-    render(){
+   cargarProductos(numeroDePagina){
+    axios.get('http://localhost:8080/Producto/traerTodos/' + numeroDePagina * 9).then(res => this.montarProductos(res.data))
+    this.setState({
+        ultimaPaginaVistida: numeroDePagina
+    })
+   }
+
+   cargarProductoDePaginaAnterior(){
+    axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida - 1) * 9).then(res => this.montarProductos(res.data))
+    this.setState({
+        ultimaPaginaVistida: this.state.ultimaPaginaVistida - 1
+    })
+}
+   cargarProductoDePaginaSiguiente(){
+    axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida + 1) * 9).then(res => this.montarProductos(res.data))
+    this.setState({
+        ultimaPaginaVistida: this.state.ultimaPaginaVistida + 1
+    })
+    }
+   render(){
         const golosinasTuplas = []
         this.state.golosinas.forEach((unGolosina, index) => {
             if((index % 3 || index === 0) && index !== 8){
@@ -61,7 +84,11 @@ export default class Golosinas extends React.Component{
             </div>
         </div>
             <div className="paginador">
-                [1][2][3][4][5]
+                <input type="button" value="<" onClick={this.cargarProductoDePaginaAnterior}/> 
+                <input type="button" value="1" onClick={e => this.cargarProductos(1)}/>
+                <input type="button" value="2" onClick={e => this.cargarProductos(2)}/>
+                <input type="button" value="3" onClick={e => this.cargarProductos(3)}/>
+                <input type="button" value=">" onClick={this.cargarProductoDePaginaSiguiente}/>
             </div>
               
 
