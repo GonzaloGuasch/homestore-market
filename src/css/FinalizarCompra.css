@@ -39,10 +39,11 @@
 
 .box-email{
     margin-left: 10%;
+    display: flex;
 }
 
 .input{
-    background: #fff;
+  background: #fff;
   color: #525865;
   border-radius: 4px;
   border: 1px solid #d1d1d1;
@@ -70,4 +71,17 @@ input:hover {
 
 .finalizar-compra-button:hover{
     background-color: #3c6b33;
+}
+
+.inputs{
+    margin-left: 34px;
+}
+
+.direccion{
+    margin-top: 38px;
+}
+
+.aclaracion{
+    margin-top: 38px;
+    margin-left: 35px;
 }
