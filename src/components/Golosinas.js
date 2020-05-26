@@ -4,7 +4,7 @@ import '../css/Golosinas.css'
 import axios from 'axios'
 import BarraBusqueda from './BarraBusqueda'
 import UnProducto from './UnProducto.js'
-import Footer from './Footer'
+
 
 export default class Golosinas extends React.Component{
     constructor(props){
@@ -22,7 +22,7 @@ export default class Golosinas extends React.Component{
     }
 
     montarProductos(elementos){
-       const golosinas = elementos.map((unElemento) => <UnProducto info={unElemento}/>);
+       const golosinas = elementos.map((unElemento, i) => <UnProducto info={unElemento}/>);
        const longitud = golosinas.length;
         this.setState({
             golosinas: golosinas,
@@ -31,6 +31,18 @@ export default class Golosinas extends React.Component{
     }
    
     render(){
+        const golosinasTuplas = []
+        this.state.golosinas.forEach((unGolosina, index) => {
+            if((index % 3 || index === 0) && index !== 8){
+                golosinasTuplas.push(<div className="column">{unGolosina}</div>)
+                console.log("columna " + index)
+                console.log("columna " + unGolosina)
+            }else{
+                golosinasTuplas.push(<div className="row">{unGolosina}</div>)
+                console.log("fila " + index)
+                console.log("fila " + unGolosina)
+            }
+        });
     return(
        <Fragment>
         <Header></Header>
@@ -44,11 +56,14 @@ export default class Golosinas extends React.Component{
         </div>
         </div>
         <div className="header-container">       
-            <div className="categorias-de-categoria">CATEGORIAS</div>
-        <div className="todos-los-productos">
-        {this.state.golosinas}
+            <div>
+            {golosinasTuplas}
+            </div>
         </div>
-               </div>
+            <div className="paginador">
+                [1][2][3][4][5]
+            </div>
+              
 
         
        </Fragment>

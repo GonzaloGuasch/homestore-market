@@ -5,13 +5,10 @@
     font-weight: 500;
     text-transform: uppercase;
     padding: 5px 10px 10px 5px;
-    margin-left: 200px;
-    margin-top: 30px;
-    margin-right: 30px;
     transition: all 0.3s;
     border-radius: 10px;
-
     font-size: 20px;
+    margin-left: 35%;
 }
 
 .borrar-boton-carrito:hover{
@@ -33,6 +30,7 @@
     border-radius: 10px;
     transition: all 0.5s;
     font-size: 20px;
+    margin-left: 6%;
 }
 
 .carrito-cuadro-container{
@@ -41,15 +39,118 @@
     margin-left: 145px;
     padding-bottom: 7px;
     border-bottom: 3px solid #ececec;
+   
     color:#77778c;
     width: 460px;
+}
+
+.veremos{
+    margin-right: 50%;
 }
 
 .columna-producto{
     margin-right: 140px;
     
 }
-
+.carrito-factura-container{
+    margin-right: 45%;  
+}
 .columna{
     margin-right: 30px;
+}
+
+.carrito-facutra-container{
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+.factura-carrito-container{
+    display:flex;
+    border-right: 1px solid #ececec;
+}
+
+.botones-container{
+    margin-top: 3%;
+    display: flex;
+}
+
+.header-carrito{
+    color:#9d9d9d;
+    font-weight: 650;
+    font-size: 18px;
+    border-bottom: 1px solid #ececec;
+    margin-top: 15%;
+    margin-left: 24%;
+    width: 80%;
+    display: flex;
+}
+
+.precio-carrito{
+    margin-left: 14%;
+}
+
+.cantidad-producto-carrito{
+    margin-left: 9%;
+}
+
+.precio-total{
+    margin-left: 7%;
+}
+
+.factura-container{
+    margin-left: 6%;
+    margin-top: 6.5%;
+    padding-left: 5%;
+    border-left: 1px solid #ececec;
+    
+}
+
+.total{
+    color:#9d9d9d;
+    font-weight: 650;
+    font-size: 18px;
+    border-bottom: 3px solid #ececec;
+}
+
+.valor-total{
+    margin-top: 15%;
+    border-bottom: 1px solid #ececec;
+    padding-bottom: 6%;
+    width: 235%;
+    display: flex;
+}
+
+.total-total{
+    margin-right: 78%;
+    font-family: "Heebo", sans-serif;
+    color:#777777;
+}
+
+.valor-de-carrito{
+    font-weight: 700;
+}
+
+.boton-finalizar-compra{
+    margin-top: 15%;
+    margin-left: 5%;
+    padding: 7px 2px 7px 2px;
+    width: 220%;
+    border-radius: 2px;
+    border-style: none;
+    background-color: #abcb42;
+    color:#ffffff;
+    font-weight: 700;
+
+    transition: all 1s;
+}
+
+.boton-finalizar-compra:hover{
+    background-color: #3c6b33;
 }

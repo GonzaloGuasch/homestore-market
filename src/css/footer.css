@@ -4,7 +4,6 @@
     margin-top: 60px;
     display: flex;
     padding-left: 15%;
-    padding-right: 15%;
 
   position: relative;
   bottom: 0;
@@ -19,11 +18,13 @@
     display: flex;
 }
 
+.titulos{
+    margin-right: 345px;
+}
 
 p {
 padding-top: 30px;
- margin-right: 345px;
- border-bottom: 2px solid grey;
+border-bottom: 2px solid grey;
 }
 
 .icon-container {

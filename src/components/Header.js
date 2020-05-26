@@ -1,6 +1,7 @@
 import React from 'react'
 import '../css/Header.css'
 import pseudoLogo from '../images/23f.jpg'
+import psuudoloPresentable from '../images/logo_ejemplo.png'
 import email from '../images/email.svg'
 import phone from '../images/phone.svg'
 import carrito from '../images/carrito.svg'
@@ -32,7 +33,7 @@ buscar(event){
         return(
          <div className="header-container">
            <div className="image-logo-container">
-               <img src={pseudoLogo} className="logo-container"/></div>
+               <img src={psuudoloPresentable} className="logo-container"/></div>
            <div className="navBar-container">
                <input type="text" 
                        className="searchbar-container"

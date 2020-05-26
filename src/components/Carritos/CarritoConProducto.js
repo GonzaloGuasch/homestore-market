@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Header from '../Header'
 import BarraBusqueda from '../BarraBusqueda'
 import '../../css/CarritoConProducto.css'
@@ -11,16 +11,14 @@ export default class CarritoConProducto extends React.Component{
         super(props);
         this.state={
             productos: [],
-            amount: 0,
-            keys: []
+            
         }
-        this.actualizarCarrito = this.actualizarCarrito.bind(this)
         this.borrarTodo = this.borrarTodo.bind(this)
         this.updetearValor = this.updetearValor.bind(this)
-        this.joinList = this.joinList.bind(this)
         this.volverAComprar = this.volverAComprar.bind(this)
         this.buscarProductoPorID = this.buscarProductoPorID.bind(this)
         this.agregarProducto = this.agregarProducto.bind(this)
+        this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
         Object.keys(localStorage).map(unIdDeProducto => this.buscarProductoPorID(unIdDeProducto))
@@ -35,24 +33,13 @@ export default class CarritoConProducto extends React.Component{
             productos: this.state.productos.concat([unProductoConCantidadEnCarro])
           })
     }
-    actualizarCarrito(valorProducto){
-       const productos = Object.keys(valorProducto);
-       const amount = Object.values(valorProducto);
-      
-        this.setState({  
-            productos:  this.joinList(productos, amount),
-        })
-        
-    }
-    joinList(productos, valor){
-        const res = []
-        for(let i = 0; i < productos.length; i++){
-            res[i] = [productos[i], valor[i]]
-        }
-        return res
-    }
+
     borrarTodo(){
-       console.log(this.state.productos)
+       this.setState({
+           productos: []
+       })
+       Object.keys(localStorage).map((unaKey, i) => localStorage.removeItem(unaKey))
+       window.location.reload();
     }
     volverAComprar(){
         this.props.history.push('/')
@@ -60,27 +47,58 @@ export default class CarritoConProducto extends React.Component{
     updetearValor(res){
         window.location.reload();
     }
+
+    completarFactura(){
+        this.props.history.push('/Factura')
+    }
     render() {
       const producotsEnCarro = this.state.productos.map((UnProducto, i) => 
             <ProductoEnCarro info={UnProducto}/>)
+      let valorTotal = 0
+      this.state.productos.map((unProducto, i) => valorTotal = valorTotal + unProducto.precio * unProducto.cantidad)
      
         return (
-            <div>
-                 <Header></Header>
+            <Fragment>
+            <Header></Header>
                 <BarraBusqueda></BarraBusqueda>
-                carrito: {this.state.productos.length}
-                <div className="carrito-cuadro-container">
-                    <div className="columna-producto">PRODUCTO</div>
-                    <div className="columna">PRECIO</div>
-                    <div className="columna">CANTIDAD</div>
-                    <div className="columna">TOTAL</div>
+                <div className="factura-carrito-container">
+                    <div>
+                        <div className="header-carrito">
+                        <div>Nombre Producto</div>
+                        <div className="precio-carrito">Precio</div>
+                        <div className="cantidad-producto-carrito">Cantidad</div>
+                        <div className="precio-total">Total</div>
+                        </div>
+                        {producotsEnCarro}
+                        <div className="botones-container">
+                        <input type="button" value="borrar todo" onClick={this.borrarTodo} className="borrar-boton-carrito"/>
+                        <input type="button" value="Volver a comprar" onClick={this.volverAComprar} className="volver-boton-carrito"/>
+                        </div>
+                    </div>
+                    <div className="factura-container">
+                        <div className="total">Total de carrito</div>
+                            <div className="valor-total">
+                                <div className="total-total">
+                                    Total        
+                                </div>
+                                <div className="valor-de-carrito">
+                                    ${valorTotal}
+                                </div>
+                                
+                            </div> 
+                            <input type="button" 
+                            value="FINALIZAR COMPRA" 
+                            className="boton-finalizar-compra"
+                            onClick={this.completarFactura}/>
+                    </div>
                 </div>
-                {producotsEnCarro}
-                <div>
-                <input type="button" value="borrar todo" onClick={this.borrarTodo} className="borrar-boton-carrito"/>
-                <input type="button" value="Volver a comprar" onClick={this.volverAComprar} className="volver-boton-carrito"/>
-                </div>
-            </div>
+                
+                 
+                  
+                
+               
+           
+            </Fragment>
         );
     }
 }
