@@ -22,7 +22,7 @@ export default class Factura extends React.Component{
             codigoPostal: '',
             showError: false,
             errorMessage: 'tusa',
-            valorEnvio: 'No calculaste el valor '
+            valorEnvio: ''
         }
         this.updateNombre = this.updateNombre.bind(this)
         this.updateApellido = this.updateApellido.bind(this)
@@ -77,11 +77,11 @@ export default class Factura extends React.Component{
     }
     enviarFactura(){
         this.borrarErroresViejos()
-        if(false){ //this.hayCamposVacios()){
+        if(this.hayCamposVacios()){
             this.displayError('No dejes campos vacios!')
             return
         }
-        if(false){ // !this.esEmailValido()){
+        if(!this.esEmailValido()){
             this.displayError('Ingrese un email valido')
             return
         }
@@ -91,18 +91,9 @@ export default class Factura extends React.Component{
         }
     }
     calcularValor(){
-        axios({
-            method: 'post',
-            url: 'https://www6.oca.com.ar/PlataformaEnvios/Home/ObtenerPrecioEnvio',
-            headers: {},
-            data: {
-                    "peso": "1", 
-                    "volumen":"0.001", 
-                    "cpOrigen":"1878",
-                    "cpDestino":"1878", 
-                    "idOperativa":"302969"
-                    }
-        }).then(res => console.log(res))
+       axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=0.3')
+       .then(res => this.setState({valorEnvio: '$' + res.data.tarifaSinIva.total}))
+       .catch(alert("Codigo postal no valido"))
     }
     updateCodigoPostal(e){
         this.setState({
@@ -259,10 +250,13 @@ export default class Factura extends React.Component{
                                             value={this.state.codigoPostal}></input></div>
                             </div>
                         </div>
+                        envio: {this.state.valorEnvio}
                     </div>
                 { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
+                <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio"></input>
                 <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
                         onClick={this.enviarFactura}/>
+                       
                
                 <Boton></Boton>
                 </div>

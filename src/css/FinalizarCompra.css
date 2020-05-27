@@ -20,7 +20,7 @@
     background-color: #abcb42;
     border-style: none;
     margin-top: 1.8%;
-    margin-left: 20%;
+    margin-left: 2%;
     margin-bottom: 4%;
     border-radius: 2px;
     padding: 8px 12px 8px 12px;
@@ -71,6 +71,25 @@
     color: red;
     font-weight: 650;
     margin-left: 18%;
-    margin-top: 4%;
+    margin-top: 2%;
     transition: all 1s;
+}
+
+.calcular-envio{
+    margin-left: 15%;
+    color: #aaca42;
+    background-color: white;
+    border: 0.5px solid black;
+    border: 1px solid #aaca42;
+    margin-top: 1.8%;
+    margin-bottom: 4%;
+    border-radius: 2px;
+    padding: 8px 12px 8px 12px;
+    font-weight: 650;
+    transition: all 1s;
+}
+
+.calcular-envio:hover{
+    color: white;
+    background-color: #aaca42;
 }
