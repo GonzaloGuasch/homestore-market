@@ -12,7 +12,6 @@
     max-width: 100%;
     height: auto;
     max-height: 75px;
-    
 }
 
 .image-logo-container{
@@ -87,4 +86,32 @@
     font-size: 22px;
 
 }
-
+@media (min-width: 411px) and (max-width: 767px) {
+    .searchbar-container{
+        font-size: 13px;
+        margin-right: 22px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 13px;
+    }
+    .contacto-container{
+        display: none
+    }
+    .telefono-container{
+        display: none
+    }
+    .image-logo-container{
+        margin-right: 10%;
+        margin-left: 2%;
+    }
+    .carrito-container{
+        margin-right: 5%;
+        margin-left: 1px;
+        margin-top: 20px;
+        font-size: 12px;
+    }
+    .logo-container{
+       height: 50px;
+    }
+}
