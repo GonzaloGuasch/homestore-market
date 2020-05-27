@@ -36,17 +36,59 @@ export default class Factura extends React.Component{
         this.updateComentario = this.updateComentario.bind(this)
         this.calcularValor = this.calcularValor.bind(this)
         this.updateCodigoPostal = this.updateCodigoPostal.bind(this)
+        this.enviarFactura = this.enviarFactura.bind(this)
+        this.hayCamposVacios = this.hayCamposVacios.bind(this)
+        this.displayError = this.displayError.bind(this)
+        this.esEmailValido = this.esEmailValido.bind(this)
+        this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
+        this.esTelvalio = this.esTelvalio.bind(this)
     }
-    calcularValor2(){
-        axios.defaults.withCredentials = true
-        axios('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=300006611&sucursalOrigen=AR-B&bultos[0][valorDeclarado]=1200&bultos[0][volumen]=200&bultos[0][kilos]=1.3', {
-            method: 'GET',
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-            }
-          }).then(response => { console.log(response)
-          })
+    hayCamposVacios(){
+        return  this.state.nombre === '' || this.state.apellido === ''  || 
+                this.state.email === ''  || this.state.pais === ''      ||
+                this.state.provincia === '' || this.state.localidad === '' ||
+                this.state.telefono === '' || this.state.codigoPostal === '' ||
+                this.state.direccion === ''
+     }
+     esEmailValido(){
+         return this.state.email.includes("@") && ( this.state.email.includes("hotmail")||
+                                                    this.state.email.includes("gmail")  ||
+                                                    this.state.email.includes("yahoo")  ||
+                                                    this.state.email.includes("outlook")||
+                                                    this.state.email.includes("iCloud")) &&
+                                                    this.state.email.includes(".com")
+     }
+     esTelvalio(){
+         return this.state.telefono.length === 8 
+             || this.state.telefono.length === 10
+             || this.state.telefono.length === 11
+     }
+     borrarErroresViejos(){
+        this.setState({
+            showError: false,
+            errorMessage: ''
+        })
+     }
+     displayError(mensaje_error){
+        this.setState({
+            showError: true,
+            errorMessage: mensaje_error
+        })
+    }
+    enviarFactura(){
+        this.borrarErroresViejos()
+        if(false){ //this.hayCamposVacios()){
+            this.displayError('No dejes campos vacios!')
+            return
+        }
+        if(false){ // !this.esEmailValido()){
+            this.displayError('Ingrese un email valido')
+            return
+        }
+        if(!this.esTelvalio()){
+            this.displayError("Numero de telefono no valido")
+            return 
+        }
     }
     calcularValor(){
         axios({
@@ -218,10 +260,10 @@ export default class Factura extends React.Component{
                             </div>
                         </div>
                     </div>
-                <div>Valor envio: {this.state.valorEnvio}</div>
-                { this.state.showError && <div>{this.state.errorMessage}</div>}
-                <input type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"/>
-                <input type="button" value="calcular valor envio" onClick={this.calcularValor}/>
+                { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
+                <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
+                        onClick={this.enviarFactura}/>
+               
                 <Boton></Boton>
                 </div>
                 

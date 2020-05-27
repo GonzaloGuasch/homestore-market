@@ -14,7 +14,6 @@ export default function BarraBusqueda(){
           <li><a href="">Galletas</a></li>
           <li><a href="">Snacks</a></li>
           <li><a href="">Especias</a></li>
-          <li><a href="">Novedades</a></li>
         </ul> 
        </div>
     )

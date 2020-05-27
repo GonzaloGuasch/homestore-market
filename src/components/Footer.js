@@ -8,14 +8,13 @@ import instagram from '../images/ig.png'
 export default function Footer(){
     return(
         <div className="footer-container">
-            <div>
-            <p className="titulos">CONTACTO</p>
+            <div className="red-container">
+                <p>CONTACTO</p>
                 <div><img src={cell} className="icon-container" alt="cellphone"></img>CEL/TEL</div>
-                <div><img src={email} className="icon-container" alt="email" ></img> EMAIL</div>
-                
+                <div><img src={email} className="icon-container" alt="email" ></img> EMAIL</div>   
             </div>
-            <div>
-            <p className="titulos">REDES</p>
+            <div className="red-container">
+                <p>REDES</p>
                 <div><a href="https://www.instagram.com/" target="_blank">
                     <img src={instagram} height="20px"/></a> Seguinos en instagram!</div>
                 <div><a href="https://www.facebook.com/" target="_blank">
@@ -23,7 +22,6 @@ export default function Footer(){
             </div>
             <div>
             <p>DIRECCION</p>
-                <div></div>
             </div>
         </div>
     )

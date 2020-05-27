@@ -11,6 +11,7 @@ export default class Prueba extends React.Component{
     render() {
         return (
             <div>
+               
                 <input type="file" accept="application/vnd.ms-excel" onChange={(e) => this.handleChange(e.target.files)}/>
             </div>
         );

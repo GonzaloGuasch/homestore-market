@@ -4,11 +4,12 @@
     margin-top: 60px;
     display: flex;
     padding-left: 15%;
+    padding-bottom: 2%;
 
   position: relative;
   bottom: 0;
   width: 100%;
-  height: 180px;
+  height: 100%;
   color:#777793;
   font-weight: 700;
   
@@ -18,12 +19,8 @@
     display: flex;
 }
 
-.titulos{
-    margin-right: 345px;
-}
-
 p {
-padding-top: 30px;
+padding-top: 5%;
 border-bottom: 2px solid grey;
 }
 
@@ -31,4 +28,10 @@ border-bottom: 2px solid grey;
     height: 15px;
     width: 15px ;
     margin-right: 13px;
+}
+.red-container{
+    margin-right: 25%;
+}
+@media (min-width: 411px) and (max-width: 767px) {
+
 }
