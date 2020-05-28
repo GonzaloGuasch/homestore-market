@@ -89,6 +89,9 @@ export default class Factura extends React.Component{
             this.displayError("Numero de telefono no valido")
             return 
         }
+
+        axios.get('http://localhost:8080/Mail/' + this.state.email + '/' + '100' + '/' + this.state.nombre + '/' + this.state.apellido)
+        .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
     }
     calcularValor(){
        axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=0.3')
