@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import Header from '../components/Header'
 import NavBar from '../components/BarraBusqueda'
 import '../css/FinalizarCompra.css'
@@ -92,7 +92,7 @@ export default class Factura extends React.Component{
     }
     calcularValor(){
        axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=0.3')
-       .then(res => this.setState({valorEnvio: '$' + res.data.tarifaSinIva.total}))
+       .then(res => this.setState({valorEnvio: res.data.tarifaSinIva.total}))
        .catch(alert("Codigo postal no valido"))
     }
     updateCodigoPostal(e){
@@ -153,15 +153,16 @@ export default class Factura extends React.Component{
 
     render() {
         return (
-            <div>
-                <Header></Header>
-                <NavBar></NavBar>
-                <div className="finalizar-compra">
+            <Fragment>
+            <Header></Header>
+            <NavBar></NavBar>
+            <div className="finalizar-compra">
                     FINALIZAR COMPRA
                 </div>
                 <div className="detalles-compra">
                     Detalles de facturación
-                </div>
+                </div>  
+            <div className="a">
                     <div className="datos-container">
                         <div className="fila-container">
                             <div className="fila-uno-container">
@@ -250,17 +251,42 @@ export default class Factura extends React.Component{
                                             value={this.state.codigoPostal}></input></div>
                             </div>
                         </div>
-                        envio: {this.state.valorEnvio}
-                    </div>
-                { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
+                        
+                        { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
                 <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio"></input>
                 <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
                         onClick={this.enviarFactura}/>
+                    </div>
+              
                        
-               
+                    <div className="metodo-pago-container">
+                        <div className="elementos-factura">
+                        <div className="tu-pedido">
+                            TU PEDIDO 
+                        </div>
+                        <div className="factura-producto-precio">
+                            <div className="inception">
+                                <div id="producto">PRODUCTO</div>
+                                <div>SUBTOTAL</div>
+                            </div>
+                        </div>
+                        <div className="inception">
+                                <div id="envio">Envio</div>
+                                <div>{this.state.valorEnvio ? <div id="costo-envio">{this.state.valorEnvio}</div> : 'No calculaste el envio'}</div>
+                            </div>
+                        <div className="inception">
+                            <div id="valor">valor total</div>
+                            <div> {this.state.valorEnvio ? 
+                                        <div id="costo-con-envio">{parseInt(localStorage.getItem("valorTotal")) + parseInt(this.state.valorEnvio)}</div> : 
+                                        <div id="costo-sin-envio">{localStorage.getItem("valorTotal")}</div>}
+                        </div>
+                        </div>
+                        
+                    </div>   
+                    </div>
                 <Boton></Boton>
-                </div>
-                
+            </div>
+            </Fragment>
         );
     }
     

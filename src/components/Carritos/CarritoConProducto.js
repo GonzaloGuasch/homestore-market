@@ -21,7 +21,7 @@ export default class CarritoConProducto extends React.Component{
         this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
-        Object.keys(localStorage).map(unIdDeProducto => this.buscarProductoPorID(unIdDeProducto))
+        Object.keys(localStorage).map(unIdDeProducto => {if(unIdDeProducto !== 'valorTotal'){this.buscarProductoPorID(unIdDeProducto)}})
     }
     buscarProductoPorID(idDeProducto){
         axios.get('http://localhost:8080/Producto/getProducto/' + idDeProducto).then(res => this.agregarProducto(res.data, localStorage.getItem(idDeProducto)))
@@ -56,7 +56,7 @@ export default class CarritoConProducto extends React.Component{
             <ProductoEnCarro info={UnProducto}/>)
       let valorTotal = 0
       this.state.productos.map((unProducto, i) => valorTotal = valorTotal + unProducto.precio * unProducto.cantidad)
-     
+      localStorage.setItem('valorTotal', valorTotal)
         return (
             <Fragment>
             <Header></Header>
