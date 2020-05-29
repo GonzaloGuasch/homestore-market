@@ -81,12 +81,15 @@ a:hover {
         text-transform: uppercase;
         font-size: 15px;
     }
-    
-    .column{
-        margin: 0 auto;
+
+    .galles{
+        display: flex;
+        flex-direction: column;
+        margin-left: 32%;
+    }
+    .paginador{
+        margin-left: 33%;
+        margin-top: 12%;
     }
 
-    .row:after{
-        margin: 0 auto;
-    }
 }

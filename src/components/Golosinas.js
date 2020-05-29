@@ -24,14 +24,15 @@ export default class Golosinas extends React.Component{
         //TO DO sacar el endpoint de todos y poner el de la categoria que pasamos por props 
         //asi tengo todas las categorias y uso el mismo component
         //axios.get('http://localhost:8080/Producto/TraerDeRubro/{RUBRO}') => anda ya voh
+
+        //Una funcion que vea el la longitud de los productos de esta categoria,
+        //asi se cuantos botones de paginas agregao abajo
     }
 
     montarProductos(elementos){
        const golosinas = elementos.map((unElemento, i) => <UnProducto info={unElemento}/>);
-       const longitud = golosinas.length;
         this.setState({
-            golosinas: golosinas,
-            resultado: longitud
+            golosinas: golosinas
         })
     }
    cargarProductos(numeroDePagina){
@@ -59,16 +60,12 @@ export default class Golosinas extends React.Component{
     }
 
    render(){
-        const golosinasTuplas = []
+        const productoTuplas = []
         this.state.golosinas.forEach((unGolosina, index) => {
             if((index % 3 || index === 0) && index !== 8){
-                golosinasTuplas.push(<div className="column">{unGolosina}</div>)
-                console.log("columna " + index)
-                console.log("columna " + unGolosina)
+                productoTuplas.push(<div className="column">{unGolosina}</div>)
             }else{
-                golosinasTuplas.push(<div className="row">{unGolosina}</div>)
-                console.log("fila " + index)
-                console.log("fila " + unGolosina)
+                productoTuplas.push(<div className="row">{unGolosina}</div>)
             }
         });
     return(
@@ -77,15 +74,15 @@ export default class Golosinas extends React.Component{
         <BarraBusqueda></BarraBusqueda>
         <div className="header-container">
         <div className="path">
-            <a href={"/"}>Inicio</a> / Golosinas
+            <a href={"/"}>Inicio</a> / {this.props.location.state.nombreCategoria}
         </div>
         <div className="Resultados">
             Resultados: {this.state.resultado}
         </div>
         </div>
         <div className="header-container">       
-            <div>
-            {golosinasTuplas}
+            <div className="galles">
+            {productoTuplas}
             </div>
         </div>
             <div className="paginador">

@@ -12,7 +12,7 @@ export default function Router(){
             <Switch>
                 <Route exact path="/" component={App}/>
                 <Route exact path="/Carrito" component={CarroContainer} />
-                <Route exact path="/Golosinas" component={Golosinas}></Route>
+                <Route exact path="/Categorias" component={Golosinas}></Route>
                 <Route exact path="/Factura" component={Factura}></Route>
                 <Route exact path="/ResultadoBusqueda" component={ResultadoBusqueda}></Route>
             </Switch>

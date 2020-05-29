@@ -8,8 +8,10 @@ export default class Categoria extends React.Component{
         this.sentTo = this.sentTo.bind(this);
     }
     sentTo(){
-        const path = '/' + this.props.categoria
-        this.props.history.push(path)
+        this.props.history.push({
+            pathname: '/Categorias',
+            state: {nombreCategoria: this.props.categoria}
+        })
     }
     render(){
         return(

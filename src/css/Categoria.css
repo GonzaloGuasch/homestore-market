@@ -15,7 +15,7 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: white;
 
-    background-image: url('../images/golosina3.jpg');
+    background-image: url('../images/ositos_gominola.jpg');
 
 }
 
@@ -44,6 +44,7 @@
     font-weight:300;
     font-size: 12px;
     border-color: #f1a516;
+    color: white;
     padding-top: 4px;
     padding-bottom: 5px;
     transition: all 0.9s;
@@ -56,6 +57,7 @@
 
 .ver-mas-button:hover{
     background-color: #ab7324;
+    color: black;
 }
 
 @media all and (max-width:30em){
