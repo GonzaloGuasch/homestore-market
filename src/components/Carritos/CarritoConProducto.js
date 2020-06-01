@@ -21,8 +21,13 @@ export default class CarritoConProducto extends React.Component{
         this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
-        Object.keys(localStorage).map(unIdDeProducto => {if(unIdDeProducto !== 'valorTotal'){this.buscarProductoPorID(unIdDeProducto)}})
+    
+        Object.keys(localStorage).map(unIdDeProducto => 
+       {if(!isNaN(unIdDeProducto)){
+        this.buscarProductoPorID(unIdDeProducto)
+        }})
     }
+    
     buscarProductoPorID(idDeProducto){
         axios.get('http://localhost:8080/Producto/getProducto/' + idDeProducto).then(res => this.agregarProducto(res.data, localStorage.getItem(idDeProducto)))
     }

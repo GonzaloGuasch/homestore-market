@@ -1,6 +1,5 @@
 import React from 'react'
 import '../css/Header.css'
-import pseudoLogo from '../images/23f.jpg'
 import psuudoloPresentable from '../images/logo_ejemplo.png'
 import email from '../images/email.svg'
 import phone from '../images/phone.svg'
@@ -11,13 +10,18 @@ export default class Header extends React.Component{
     constructor(props){
     super(props);
     this.state = {
-        busquedaProducto: ''
+        busquedaProducto: '',
+        isLog: false
     };
     this.actualizarBusqueda = this.actualizarBusqueda.bind(this)
     this.buscar = this.buscar.bind(this)
     this.mostarBusquedaProducto = this.mostarBusquedaProducto.bind(this)
 }
-
+componentDidMount(){
+    this.setState({
+        isLog: localStorage.getItem("isLog")
+    })
+}
 actualizarBusqueda(event){
     this.setState({ 
         busquedaProducto: event.target.value 
@@ -52,6 +56,9 @@ mostarBusquedaProducto(productosEncontrados){
                        value={this.state.busquedaProducto}
                        onChange={this.actualizarBusqueda}
                        onKeyDown={this.buscar}/>
+                       <div className="logIn-register-container">
+                           {this.state.isLog? <a href="/Pedidos">Pedidos</a> : <a href="/LogIn-Register">Unirse/Ingresar</a>}
+                       </div>
                        <div className="contacto-container">
                            <img src={email} className="logo-email"></img>
                            Contactar

@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom'
 import CarroContainer from './Carritos/CarritoContainer'
 import ResultadoBusqueda from '../components/ResultadoBusqueda.js'
 import Factura from '../components/Factura.js'
+import LogInRegister from '../components/LogInRegister.js'
+import PerfilUsuario from '../components/PerfilUsuario.js'
 
 export default function Router(){
     return(
@@ -15,6 +17,9 @@ export default function Router(){
                 <Route exact path="/Categorias" component={Golosinas}></Route>
                 <Route exact path="/Factura" component={Factura}></Route>
                 <Route exact path="/ResultadoBusqueda" component={ResultadoBusqueda}></Route>
+                <Route exact path="/LogIn-Register" component={LogInRegister}></Route>
+                <Route exact path="/Pedidos" component={PerfilUsuario}></Route>
+                
             </Switch>
         </BrowserRouter>
     )
