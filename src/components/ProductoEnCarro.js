@@ -22,6 +22,9 @@ export default class ProductoEnCarro extends React.Component{
     }
     sacarProductoDeCarro(){     
        localStorage.removeItem(this.props.info.id)
+       if(Object.keys(localStorage).length === 1){
+            localStorage.removeItem("valorTotal")
+       }
        window.location.reload();
     }
     render() {

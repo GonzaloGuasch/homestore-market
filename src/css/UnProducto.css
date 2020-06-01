@@ -20,6 +20,17 @@
     
 }
 
+.No-stock{
+    margin-left: 15px;
+    border-radius: 8px;
+    border-style: solid;
+    font-weight: 600;
+    background-color: #d82a0c;
+    border-color: #f33809b2;
+    color:white;
+    transition: all 0.5s ease-in-out;
+}
+
 .Agregar-boton:hover{
     background-color: #ab7324;
 }

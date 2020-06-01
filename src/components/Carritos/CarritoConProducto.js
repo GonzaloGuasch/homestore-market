@@ -39,6 +39,7 @@ export default class CarritoConProducto extends React.Component{
            productos: []
        })
        Object.keys(localStorage).map((unaKey, i) => localStorage.removeItem(unaKey))
+       localStorage.removeItem("valorTotal")
        window.location.reload();
     }
     volverAComprar(){
@@ -56,7 +57,7 @@ export default class CarritoConProducto extends React.Component{
             <ProductoEnCarro info={UnProducto}/>)
       let valorTotal = 0
       this.state.productos.map((unProducto, i) => valorTotal = valorTotal + unProducto.precio * unProducto.cantidad)
-      localStorage.setItem('valorTotal', valorTotal)
+      if(valorTotal !== 0){localStorage.setItem('valorTotal', valorTotal)}
         return (
             <Fragment>
             <Header></Header>

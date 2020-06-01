@@ -8,6 +8,8 @@ export default class UnProducto extends React.Component{
         this.state={
             value: 0,
             info: props.info,
+            botonValue: 'AGREGAR',
+            tieneStock: true
         }
         this.add = this.add.bind(this)
         this.remove = this.remove.bind(this)
@@ -40,9 +42,16 @@ export default class UnProducto extends React.Component{
     }
 
     add(){
+      if(this.state.value < this.state.info.stock){
         this.setState({
             value: this.state.value + 1 
         })
+      }else{
+        this.setState({
+            botonValue: "SIN STOCK",
+            tieneStock: false
+        })
+      }
     }
     remove(){
         if(this.state.value === 0){return}
@@ -74,8 +83,8 @@ export default class UnProducto extends React.Component{
                 <div className="contador-boton-container">
                 </div>
                 <input  type="button" 
-                        value="AGREGAR" 
-                        className="Agregar-boton" 
+                        value={this.state.botonValue} 
+                        className={this.state.tieneStock ? "Agregar-boton" : "No-stock"}
                         onClick={this.agregarACarrito}/>
                 </div>
             </div>
