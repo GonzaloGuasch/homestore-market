@@ -32,21 +32,18 @@ a:hover {
     margin-right: 20px;
 }
 
-.column {
-    float: left;
-    width: 40%;
-    margin-right: 3px;
-  }
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
+.producto {
+    margin: 0 44px;
+    width: 200px;
+    margin-bottom: 40px;
+    height: 200px;
 }
 
 .paginador{
-    margin-top: 5%;
+    margin-top: 2%;
     margin-bottom: 3%;
-    margin-left: 48%;
+    display: flex;
+    justify-content: center;
 }
 
 .button-paginado{
@@ -63,7 +60,14 @@ a:hover {
 .button-paginado:hover{
     background-color:white;
     color:#feae17;
-    border: 1px solid #feae17;
+   
+}
+.galles{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 65px;
+    margin-top: 40px;
 }
 
 @media (min-width: 411px) and (max-width: 767px) {
@@ -84,8 +88,8 @@ a:hover {
 
     .galles{
         display: flex;
-        flex-direction: column;
-        margin-left: 32%;
+        flex-wrap: wrap;
+        width: 100%;
     }
     .paginador{
         margin-left: 33%;

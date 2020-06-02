@@ -21,11 +21,10 @@ export default class CarritoConProducto extends React.Component{
         this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
-    
-        Object.keys(localStorage).map(unIdDeProducto => 
-       {if(!isNaN(unIdDeProducto)){
-        this.buscarProductoPorID(unIdDeProducto)
-        }})
+        Object.keys(localStorage).map(unIdDeProducto => {
+                                                          if(!isNaN(unIdDeProducto)){
+                                                            this.buscarProductoPorID(unIdDeProducto)
+                                                        }})
     }
     
     buscarProductoPorID(idDeProducto){
@@ -43,9 +42,8 @@ export default class CarritoConProducto extends React.Component{
        this.setState({
            productos: []
        })
-       Object.keys(localStorage).map((unaKey, i) => localStorage.removeItem(unaKey))
-       localStorage.removeItem("valorTotal")
-       window.location.reload();
+       Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
+       this.updetearValor()
     }
     volverAComprar(){
         this.props.history.push('/')
@@ -54,15 +52,18 @@ export default class CarritoConProducto extends React.Component{
         window.location.reload();
     }
 
-    completarFactura(){
-        this.props.history.push('/Factura')
+    completarFactura(valorTotal){
+        this.props.history.push({
+            pathname: '/Factura',
+            state: {productos: this.state.productos,
+                    valorTotal: valorTotal}
+        })
     }
     render() {
       const producotsEnCarro = this.state.productos.map((UnProducto, i) => 
             <ProductoEnCarro info={UnProducto}/>)
       let valorTotal = 0
       this.state.productos.map((unProducto, i) => valorTotal = valorTotal + unProducto.precio * unProducto.cantidad)
-      if(valorTotal !== 0){localStorage.setItem('valorTotal', valorTotal)}
         return (
             <Fragment>
             <Header></Header>
@@ -95,15 +96,9 @@ export default class CarritoConProducto extends React.Component{
                             <input type="button" 
                             value="FINALIZAR COMPRA" 
                             className="boton-finalizar-compra"
-                            onClick={this.completarFactura}/>
+                            onClick={() => this.completarFactura(valorTotal)}/>
                     </div>
                 </div>
-                
-                 
-                  
-                
-               
-           
             </Fragment>
         );
     }

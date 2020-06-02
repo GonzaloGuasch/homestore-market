@@ -28,11 +28,12 @@ actualizarBusqueda(event){
     })
 }
 buscar(event){
-    if(event.key == 'Enter'){
+    if(event.key === 'Enter'){
         if(this.state.busquedaProducto === ''){
             alert("No buscaste ningun producto!")
         }
-        axios.get('http://localhost:8080/Producto/productosQueContengan/' + this.state.busquedaProducto).then(res => this.mostarBusquedaProducto(res.data))
+        axios.get('http://localhost:8080/Producto/productosQueContengan/' + this.state.busquedaProducto)
+        .then(res => this.mostarBusquedaProducto(res.data))
     }
 }
 
@@ -48,7 +49,7 @@ mostarBusquedaProducto(productosEncontrados){
         return(
          <div className="header-container">
            <div className="image-logo-container">
-               <img src={psuudoloPresentable} className="logo-container"/></div>
+               <img src={psuudoloPresentable} className="logo-container" alt="logo"/></div>
            <div className="navBar-container">
                <input type="text" 
                        className="searchbar-container"
@@ -57,18 +58,18 @@ mostarBusquedaProducto(productosEncontrados){
                        onChange={this.actualizarBusqueda}
                        onKeyDown={this.buscar}/>
                        <div className="logIn-register-container">
-                           {this.state.isLog? <a href="/Pedidos">Pedidos</a> : <a href="/LogIn-Register">Unirse/Ingresar</a>}
+                           {this.state.isLog ? <a href="/Pedidos">Pedidos</a> : <a href="/LogIn-Register">Unirse/Ingresar</a>}
                        </div>
                        <div className="contacto-container">
-                           <img src={email} className="logo-email"></img>
+                           <img src={email} className="logo-email" alt="img-email"></img>
                            Contactar
                        </div>
                        <div className="telefono-container">
-                       <img src={phone} className="logo-email"></img>
+                       <img src={phone} className="logo-email" alt="img-phone"></img>
                           5555-5555
                        </div>
                        <div className="carrito-container">
-                       <img src={carrito} className="logo-email"></img>
+                       <img src={carrito} className="logo-email" alt="img-carrito"></img>
                            <a href="/Carrito">Carrito</a>
                        </div>
          

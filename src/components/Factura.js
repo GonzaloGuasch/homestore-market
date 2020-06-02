@@ -46,7 +46,7 @@ export default class Factura extends React.Component{
     }
     componentDidMount(){
         this.setState({
-            valorTotal: localStorage.getItem("valorTotal")
+            valorTotal: this.props.location.state.valorTotal
         })
     }
     hayCamposVacios(){
@@ -96,12 +96,18 @@ export default class Factura extends React.Component{
             return 
         }
         localStorage.removeItem("valorTotal")
-       axios.get('http://localhost:8080/Mail/' + this.state.email + '/' + '100' + '/' + this.state.nombre + '/' + this.state.apellido)
-       .then(res => {alert("En tu mail se encuentra la factura! Gracias por la compra")})
+        let productosEnFactura = this.props.location.state.productos
+       // let usuarioEnSesion = JSON.parse(localStorage.getItem("usuario"))
+       axios.get(`http://localhost:8080/Mail/ ${this.state.email}/${100}/${this.state.nombre}/${this.state.apellido}`)
+       .then(res => {axios({
+                        method: 'post',
+                        url: 'http://localhost:8080/Usuario/GuardarFactura',
+                        data: { productosEnFactura }}.then(res => alert("En tu mail se encuentra la factura! Gracias por la compra")))})
+       
        
     }
     calcularValor(){
-       axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=0.3')
+       axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=1.3')
        .then(res => this.setState({valorEnvio: res.data.tarifaSinIva.total}))
        
     }
@@ -287,7 +293,7 @@ export default class Factura extends React.Component{
                         <div className="inception">
                             <div id="valor">valor total</div>
                             <div> {this.state.valorEnvio ? 
-                                        <div id="costo-con-envio">{parseInt(this.state.valorTotal) + parseInt(this.state.valorEnvio)}</div> : 
+                                        <div id="costo-con-envio">{this.state.valorTotal + parseInt(this.state.valorEnvio)}</div> : 
                                         <div id="costo-sin-envio">{this.state.valorTotal}</div>}
                         </div>
                         </div>

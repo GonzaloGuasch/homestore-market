@@ -15,28 +15,31 @@ export default class UnProducto extends React.Component{
         this.remove = this.remove.bind(this)
         this.agregarACarrito = this.agregarACarrito.bind(this)
         this.updetearCarrito = this.updetearCarrito.bind(this)
-
     }
-  
+
     agregarACarrito(){
-        if(this.state.value === 0){
+        if(this.state.value === 0 && this.state.tieneStock){
             alert("No selecionaste la cantidad que querias!")
-        }else{ 
+        }
+        if(this.state.tieneStock){
             this.updetearCarrito()
             this.setState({
                 value: 0
             })
             alert("Se agrego tu producto al carrito!")
+            return
         }
+        alert("No queda stock para ese producto")
     }
     updetearCarrito() {
-        if (localStorage.getItem(this.state.info.id)) {
+        if (localStorage.getItem(this.state.info.id)) { 
+            //Agrego si ya esta
             let valoresDeProducto = localStorage.getItem(this.state.info.id)
             valoresDeProducto = parseInt(valoresDeProducto) + parseInt(this.state.value)
             localStorage.setItem(this.state.info.id, valoresDeProducto)
-            console.log(localStorage.getItem(this.state.info.id))
         }
         else {
+            //Agrego si falta
             localStorage.setItem(this.state.info.id, this.state.value)
         }
     }
@@ -63,7 +66,7 @@ export default class UnProducto extends React.Component{
         return(
             <div className="info-producto-container">
                 <div className="image-button-container">
-                    <img src={turro} className="image-producto"/>
+                    <img src={turro} className="image-producto" alt="producto-image"/>
                 </div>
                 <div className="descripcion-container">
                  Descripcion
@@ -79,7 +82,7 @@ export default class UnProducto extends React.Component{
                 <div className="value-container">
                 {this.state.value}
                 </div>
-                <input type="button" value="-" className="remover" onClick={this.remove} value="-"></input> 
+                <input type="button" value="-" className="remover" onClick={this.remove}></input> 
                 <div className="contador-boton-container">
                 </div>
                 <input  type="button" 

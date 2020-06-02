@@ -1,6 +1,9 @@
 .info-producto-container{
-    margin-top: 50px;
-    margin-right: 140px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
 }
 
 .contador-boton-container{
@@ -45,11 +48,12 @@
 
 }
 .valor-container{
-    margin-top: 10px;
+    margin-top: auto;
     font-weight: 660;
 }
 
 .contador-container{
+    margin-top: 5px;
     display: flex;
 }
 

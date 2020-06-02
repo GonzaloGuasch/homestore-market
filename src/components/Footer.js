@@ -15,10 +15,10 @@ export default function Footer(){
             </div>
             <div className="red-container">
                 <p>REDES</p>
-                <div><a href="https://www.instagram.com/" target="_blank">
-                    <img src={instagram} height="20px"/></a> Seguinos en instagram!</div>
-                <div><a href="https://www.facebook.com/" target="_blank">
-                    <img src={facebook} height="20px"/></a> Seguinos en facebook!</div>
+                <div><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+                    <img src={instagram} height="20px" alt="instagram logo"/></a> Seguinos en instagram!</div>
+                <div><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+                    <img src={facebook} height="20px" alt="facebook logo"/></a> Seguinos en facebook!</div>
             </div>
             <div>
             <p>DIRECCION</p>

@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react'
-import bravo from '../images/23f.jpg'
 import carrusel from '../images/carrusel.jpg'
 import { Carousel} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
