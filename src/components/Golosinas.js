@@ -62,12 +62,9 @@ export default class Golosinas extends React.Component{
    render(){
         const productoTuplas = []
         this.state.golosinas.forEach((unGolosina, index) => {
-            if((index % 3 || index === 0) && index !== 8){
-                productoTuplas.push(<div className="producto">{unGolosina}</div>)
-            }else{
-                productoTuplas.push(<div className="producto">{unGolosina}</div>)
-            }
-        });
+            productoTuplas.push(<div className="producto">{unGolosina}</div>)
+        })
+        
     return(
        <Fragment>
         <Header></Header>

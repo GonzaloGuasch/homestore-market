@@ -23,7 +23,8 @@ export default class Factura extends React.Component{
             showError: false,
             errorMessage: 'tusa',
             valorEnvio: '',
-            valorTotal: 0
+            valorTotal: 0,
+            productos: []
         }
         this.updateNombre = this.updateNombre.bind(this)
         this.updateApellido = this.updateApellido.bind(this)
@@ -43,10 +44,12 @@ export default class Factura extends React.Component{
         this.esEmailValido = this.esEmailValido.bind(this)
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
+        this.obtenerProductos = this.obtenerProductos.bind(this)
     }
     componentDidMount(){
         this.setState({
-            valorTotal: this.props.location.state.valorTotal
+            valorTotal: this.props.location.state.valorTotal,
+            productos: this.props.location.state.productos
         })
     }
     hayCamposVacios(){
@@ -81,30 +84,51 @@ export default class Factura extends React.Component{
             errorMessage: mensaje_error
         })
     }
+    obtenerProductos(){
+        let productos = [];
+        this.state.productos.map((unProducto, i) => productos.push({"nombre": unProducto.nombre,
+                                                                    "cantidad": unProducto.cantidad
+                                                                                        }))                                                                               
+        return productos                                                                                
+    }
     enviarFactura(){
         this.borrarErroresViejos()
-        if(this.hayCamposVacios()){
+        if(false){//this.hayCamposVacios()){
             this.displayError('No dejes campos vacios!')
             return
         }
-        if(!this.esEmailValido()){
+        if(false){//!this.esEmailValido()){
             this.displayError('Ingrese un email valido')
             return
         }
-        if(!this.esTelvalio()){
+        if(false){//!this.esTelvalio()){
             this.displayError("Numero de telefono no valido")
             return 
         }
-        localStorage.removeItem("valorTotal")
-        let productosEnFactura = this.props.location.state.productos
-       // let usuarioEnSesion = JSON.parse(localStorage.getItem("usuario"))
-       axios.get(`http://localhost:8080/Mail/ ${this.state.email}/${100}/${this.state.nombre}/${this.state.apellido}`)
-       .then(res => {axios({
-                        method: 'post',
-                        url: 'http://localhost:8080/Usuario/GuardarFactura',
-                        data: { productosEnFactura }}.then(res => alert("En tu mail se encuentra la factura! Gracias por la compra")))})
-       
-       
+      
+      // axios.get(`http://localhost:8080/Mail/ ${this.state.email}/${100}/${this.state.nombre}/${this.state.apellido}`).then(res => console.log(res))
+      let p = this.obtenerProductos() 
+      if(JSON.parse(localStorage.getItem("usuario")).username){
+           
+        axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
+        {
+          productos: p,
+          nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
+        })
+        .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
+        
+       }else{
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/Producto/decrementarStock',
+            data: {
+                    'productos': p,
+                  }
+            })
+            .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
+            .catch(e => console.log(e))
+        }
+        
     }
     calcularValor(){
        axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=1.3')

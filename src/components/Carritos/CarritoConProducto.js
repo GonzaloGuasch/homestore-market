@@ -21,7 +21,7 @@ export default class CarritoConProducto extends React.Component{
         this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
-        Object.keys(localStorage).map(unIdDeProducto => {
+        Object.keys(localStorage).map((unIdDeProducto, i) => {
                                                           if(!isNaN(unIdDeProducto)){
                                                             this.buscarProductoPorID(unIdDeProducto)
                                                         }})
