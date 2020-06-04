@@ -45,6 +45,7 @@ export default class Factura extends React.Component{
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
         this.obtenerProductos = this.obtenerProductos.bind(this)
+        this.facturaTerminada = this.facturaTerminada.bind(this)
     }
     componentDidMount(){
         this.setState({
@@ -115,7 +116,7 @@ export default class Factura extends React.Component{
           productos: p,
           nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
         })
-        .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
+        .then(res => this.facturaTerminada())
         
        }else{
         axios({
@@ -129,6 +130,11 @@ export default class Factura extends React.Component{
             .catch(e => console.log(e))
         }
         
+    }
+    facturaTerminada(){
+        alert("En tu mail se encuentra la factura! Gracias por la compra")
+        Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
+        this.props.history.push("/")
     }
     calcularValor(){
        axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=1.3')

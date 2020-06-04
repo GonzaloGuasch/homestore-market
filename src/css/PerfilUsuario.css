@@ -1,0 +1,19 @@
+.username{
+    margin-left: 5.5%;
+    margin-top: 2%;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #7b7b7b;
+    font-weight: 550;
+}
+.email-user-profile{
+    margin-left: 5.5%;
+    text-transform: uppercase;
+    color: #7b7b7b;
+    font-weight: 550;
+}
+
+.pedidos-viejos{
+    margin-left: 5.5%;
+    color: #7b7b7b;
+}

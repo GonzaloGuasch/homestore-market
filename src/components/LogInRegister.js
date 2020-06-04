@@ -123,10 +123,13 @@ export default class LogInRegister extends React.Component{
         })
         
     }
+    
    iniciarSesion(data){
-       localStorage.setItem("usuario", JSON.stringify(data))
-       this.props.history.push("/")
+    localStorage.setItem("isLog", true)
+    localStorage.setItem("usuario", JSON.stringify(data))
+    this.props.history.push("/")
    }
+
     checkLogIn(data){
        if(data){ localStorage.setItem("isLog", true)
                  localStorage.setItem("usuario", JSON.stringify(data))
