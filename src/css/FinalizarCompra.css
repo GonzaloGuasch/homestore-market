@@ -136,6 +136,9 @@
 #producto{
     margin-right: 63.7%;
 }
+#valor{
+    margin-right: 55%;
+}
 #envio{
     margin-right: 25%;
 }
@@ -143,12 +146,11 @@
     margin-left: 205%;
     font-weight: 650;
 }
+
 #costo-sin-envio{
-    margin-left: 593%;
     font-weight: 650;
 }
 #costo-con-envio{
-    margin-left: 593%;
     font-weight: 650;
 }
 

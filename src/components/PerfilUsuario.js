@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import BarraBusqueda from '../components/BarraBusqueda'
 import axios from 'axios'
 import '../css/PerfilUsuario.css'
+import UnPedido from '../components/UnPedido.js'
 
 export default class PerfilUsuario extends React.Component{
     constructor(props) {
@@ -22,13 +23,14 @@ export default class PerfilUsuario extends React.Component{
         })
     }
     render() {
+        let oldPedidos = this.state.pedidos.map((aPedido, i) => <UnPedido info={aPedido} />)
         return (
             <Fragment>
                 <Header></Header>
                 <BarraBusqueda></BarraBusqueda>
                 <div className="username">{JSON.parse(localStorage.getItem("usuario")).username}</div>
                 <div className="email-user-profile">MAIL: {JSON.parse(localStorage.getItem("usuario")).email}</div>
-                <div className="pedidos-viejos">PEDIDOS ANTIGUOS: {this.state.pedidos.map((unPedido, i) => unPedido.nombreProducto)}</div>
+        <div className="pedidos-viejos">PEDIDOS ANTIGUOS: {oldPedidos}</div>
             </Fragment>
         );
     }

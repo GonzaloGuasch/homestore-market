@@ -61,6 +61,12 @@ export default class UnProducto extends React.Component{
         this.setState({
             value: this.state.value - 1 
         })
+        if(this.state.value < this.state.info.stock){
+            this.setState({
+                botonValue: "AGREGAR",
+                tieneStock: true
+            })
+        }
     }
     render(){
         return(

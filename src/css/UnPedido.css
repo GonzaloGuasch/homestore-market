@@ -1,0 +1,32 @@
+.Pedido-container{
+    border: 2px solid #eeeeee;
+    width: 50%;
+    margin-top: 0.5%;
+    margin-left: 25%;
+    margin-bottom: 1%;
+    padding: 10px 0px 7px 20px;
+}
+
+.pedido-button{
+    display: flex;
+}
+
+.button-repetir-pedido-container{
+    margin-left: 14%;
+    margin-top: 1.5%;
+}
+
+.nombre-cantidad{
+    width: 50%;
+}
+
+.spinner-button{
+    border: 1px solid black;
+    border-radius: 8px;
+    border-style: solid;
+    background-color: #feae17;
+    border-color: #f1a516;
+    text-align: center;
+    width: 90%;
+    margin-left: 10px;
+}
