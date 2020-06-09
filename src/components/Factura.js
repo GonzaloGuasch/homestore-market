@@ -4,6 +4,7 @@ import NavBar from '../components/BarraBusqueda'
 import '../css/FinalizarCompra.css'
 import Boton from '../components/WppButton'
 import axios from 'axios'
+import Loader from 'react-loader-spinner';
 
 export default class Factura extends React.Component{
     constructor(props) {
@@ -24,7 +25,8 @@ export default class Factura extends React.Component{
             errorMessage: 'tusa',
             valorEnvio: '',
             valorTotal: 0,
-            productos: []
+            productos: [],
+            loading: false
         }
         this.updateNombre = this.updateNombre.bind(this)
         this.updateApellido = this.updateApellido.bind(this)
@@ -46,6 +48,8 @@ export default class Factura extends React.Component{
         this.esTelvalio = this.esTelvalio.bind(this)
         this.obtenerProductos = this.obtenerProductos.bind(this)
         this.facturaTerminada = this.facturaTerminada.bind(this)
+        this.enviarCobroMercadoPago = this.enviarCobroMercadoPago.bind(this)   
+        this.handleMercadoPago = this.handleMercadoPago.bind(this)     
     }
     componentDidMount(){
         this.setState({
@@ -94,44 +98,64 @@ export default class Factura extends React.Component{
     }
     enviarFactura(){
         this.borrarErroresViejos()
-        if(false){//this.hayCamposVacios()){
+        if(false){ //this.hayCamposVacios()){
             this.displayError('No dejes campos vacios!')
             return
         }
-        if(false){//!this.esEmailValido()){
+        if(false){ //!this.esEmailValido()){
             this.displayError('Ingrese un email valido')
             return
         }
-        if(false){//!this.esTelvalio()){
+        if(false){ //!this.esTelvalio()){
             this.displayError("Numero de telefono no valido")
             return 
         }
-      
-      // axios.get(`http://localhost:8080/Mail/ ${this.state.email}/${100}/${this.state.nombre}/${this.state.apellido}`).then(res => console.log(res))
-      let p = this.obtenerProductos() 
-      if(JSON.parse(localStorage.getItem("usuario")).username){
+      this.setState({loading: true}, () => {
+        axios.get(`http://localhost:8080/Mail/${this.state.email}/${100}/${this.state.nombre}`).then(res => console.log(res))
+        let p = this.obtenerProductos() 
+            if(JSON.parse(localStorage.getItem("usuario")).username){
            
-        axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
-        {
-          productos: p,
-          nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
-        })
-        .then(res => this.facturaTerminada())
+                axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
+                {
+                    productos: p,
+                    nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
+                })
+                .then(res => this.enviarCobroMercadoPago())
+                .catch(e => console.log(e))
         
-       }else{
+            }else{
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/Producto/decrementarStock',
+                    data: {
+                        'productos': p,
+                    }
+                 })
+                .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
+                .catch(e => console.log(e))
+            }
+    })
+    }
+    enviarCobroMercadoPago(){
+        let productos = this.obtenerProductos();
+        let usuario = JSON.parse(localStorage.getItem("usuario")).username
         axios({
             method: 'post',
-            url: 'http://localhost:8080/Producto/decrementarStock',
-            data: {
-                    'productos': p,
-                  }
-            })
-            .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
-            .catch(e => console.log(e))
-        }
-        
+            url: 'http://localhost:8080/MP/PagoDeProducto',
+            data: 
+            {
+                productos: productos,
+                nombreUsuario: usuario
+            }
+        }).then(res => this.handleMercadoPago(res.data))
+        .catch(e => console.log(e))
+            //res => this.facturaTerminada())
+    }
+    handleMercadoPago(url){
+        window.location.replace(url)
     }
     facturaTerminada(){
+        this.setState({loading: false})
         alert("En tu mail se encuentra la factura! Gracias por la compra")
         Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
         this.props.history.push("/")
@@ -299,9 +323,14 @@ export default class Factura extends React.Component{
                         </div>
                         
                         { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
+                <div className="flex-buttons">
                 <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio"></input>
-                <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
-                        onClick={this.enviarFactura}/>
+                
+                {this.state.loading ? <Loader type="Oval" color="white" height={25} width={100} className="spinner-finalizar-compra"/> :
+                                      <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
+                                      onClick={this.enviarFactura}/>
+                }
+                </div>
                     </div>
               
                        

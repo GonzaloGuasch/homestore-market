@@ -103,10 +103,11 @@ export default class LogInRegister extends React.Component{
     }
 
     tryLogIn(){
-        if(this.esEmailValido(this.state.email)){
+        if(!this.esEmailValido(this.state.email)){
             this.setState({
                 emailVacio: true
             })
+            return
         }
         if(this.state.password === ""){
             this.setState({

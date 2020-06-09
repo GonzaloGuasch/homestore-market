@@ -1,0 +1,20 @@
+.container-actualizar{
+    margin-left: 400px;
+    margin-top: 90px;
+}
+
+.button-secret{
+    border-radius: 10px;
+    border-style: none;
+    margin-bottom: 10px;
+}
+
+.button-secret:hover{
+   border: 1px solid black;
+}
+
+.volverPage-secret{
+    border: 1px solid black;
+    border-radius: 25px;
+    padding: 3px 9px 9px 3px;
+}
