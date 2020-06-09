@@ -82,17 +82,21 @@ export default class LogInRegister extends React.Component{
             }) 
             return 
         }
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/Usuarios/crearUsuario',
-            data: {
-                "username": this.state.nombreDeUsuario,
-                "email": this.state.correoElectronico,
-                "password": this.state.contraseña
-            }
-        }).then(res => this.iniciarSesion(res.data))
-            .catch(e => console.log(e))
+        axios.get('http://localhost:8080/Usuarios/mailExistente/' + this.state.correoElectronico)
+        .then(res => {
+                axios({
+                    method: 'post',
+                    url: 'http://localhost:8080/Usuarios/crearUsuario',
+                    data: {
+                        "username": this.state.nombreDeUsuario,
+                        "email": this.state.correoElectronico,
+                        "password": this.state.contraseña
+                }}).then(res => this.iniciarSesion(res.data))
+                   .catch(e => console.log(e))
+                })
+        .catch(e => alert("Mail ya registrado"))      
     }
+
     esEmailValido(correo){
         return correo.includes("@") && (  this.state.email.includes("hotmail")||
                                                     this.state.email.includes("gmail")  ||
