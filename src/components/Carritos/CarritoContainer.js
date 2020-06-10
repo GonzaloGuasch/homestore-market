@@ -10,7 +10,10 @@ export default class CarritoContainer extends React.Component{
         this.hayProductos = this.hayProductos.bind(this)
     }
     hayProductos(){
-        return JSON.parse(localStorage.getItem("productos"))
+       if(localStorage.getItem("productos")){
+            return JSON.parse(localStorage.getItem("productos")).length > 0
+       }
+       return false
     }
     render() {
         let carrito;

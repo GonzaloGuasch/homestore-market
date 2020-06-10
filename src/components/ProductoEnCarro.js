@@ -21,8 +21,16 @@ export default class ProductoEnCarro extends React.Component{
         })
     }
     sacarProductoDeCarro(){     
-       localStorage.removeItem(this.props.info.id)
-       window.location.reload();
+        let productosEnCarritoSinActual = []
+        let productosEnCarrito = JSON.parse(localStorage.getItem("productos"))
+           
+        productosEnCarrito.map((unProductoEnCarro, i) => {
+            if(unProductoEnCarro.producto !== this.state.nombre){
+                productosEnCarritoSinActual = productosEnCarritoSinActual.concat(unProductoEnCarro)
+            }})
+
+        localStorage.setItem("productos", JSON.stringify(productosEnCarritoSinActual))
+        window.location.reload();
     }
     render() {
         return (
