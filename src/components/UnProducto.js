@@ -72,7 +72,9 @@ export default class UnProducto extends React.Component{
     add(){
       if(this.state.value < this.state.info.stock){
         this.setState({
-            value: this.state.value + 1 
+            value: this.state.value + 1,
+            botonValue: "AGREGAR",
+            tieneStock: true
         })
       }else{
         this.setState({
@@ -83,15 +85,26 @@ export default class UnProducto extends React.Component{
     }
     remove(){
         if(this.state.value === 0){return}
-        this.setState({
-            value: this.state.value - 1 
-        })
+        if(!this.state.tieneStock){
+            this.setState({
+                botonValue: "AGREGAR",
+                tieneStock: true 
+            })
+            return 
+            console.log("value: " + this.state.value)
+            console.log("stock: " + this.state.info.stock)
+        }
         if(this.state.value < this.state.info.stock){
             this.setState({
                 botonValue: "AGREGAR",
                 tieneStock: true
             })
         }
+        this.setState({
+            value: this.state.value - 1,
+            botonValue: "AGREGAR",
+            tieneStock: true
+        })
     }
     render(){
         return(

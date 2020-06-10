@@ -39,7 +39,10 @@ export default class UnPedido extends React.Component{
                 <div className="pedido-button">
                     <div className="nombre-cantidad">
                         <div>Nombre De Producto: {this.props.info.nombreProducto}</div>
-                        <div>Cantidad: {this.props.info.cantidad} </div>
+                        <div >Cantidad: <input  type="number" 
+                                                value={this.props.info.cantidad}
+                                                className="cantidad-input"></input> </div>
+                        <div>Precio: {this.props.info.cantidad * this.props.info.precio} </div>
                     </div>
                     <div className="button-repetir-pedido-container">
                        {this.state.loading ?  <Loader type="Oval" color="white" height={25} width={120} className="spinner-button"/> :
