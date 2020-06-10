@@ -47,7 +47,6 @@ export default class Factura extends React.Component{
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
         this.obtenerProductos = this.obtenerProductos.bind(this)
-        this.facturaTerminada = this.facturaTerminada.bind(this)
         this.enviarCobroMercadoPago = this.enviarCobroMercadoPago.bind(this)   
         this.handleMercadoPago = this.handleMercadoPago.bind(this)     
     }
@@ -150,18 +149,16 @@ export default class Factura extends React.Component{
         .catch(e => console.log(e))
             this.setState({loading: false})
     }
+
     handleMercadoPago(url){
         window.location.replace(url)
     }
-    facturaTerminada(){
-        
-        this.props.history.push("/")
-    }
+
     calcularValor(){
        axios.get('https://api.andreani.com/v1/tarifas?cpDestino=' + this.state.codigoPostal + '&contrato=400006710&sucursalOrigen=1878&bultos[0][valorDeclarado]=10&bultos[0][volumen]=10&bultos[0][kilos]=1.3')
        .then(res => this.setState({valorEnvio: res.data.tarifaSinIva.total}))
-       
     }
+    
     updateCodigoPostal(e){
         this.setState({
             codigoPostal: e.target.value

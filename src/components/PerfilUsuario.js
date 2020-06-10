@@ -14,7 +14,7 @@ export default class PerfilUsuario extends React.Component{
         this.setTearPedidos = this.setTearPedidos.bind(this)
     }
     componentDidMount(){
-        axios.get('http://localhost:8080/Usuarios/PedidosDe/' + JSON.parse(localStorage.getItem("usuario")).username)
+        axios.get('http://localhost:8080/Usuarios/PedidosDe/' + JSON.parse(localStorage.getItem("usuario")).email)
         .then(res => this.setTearPedidos(res.data))
     }
     setTearPedidos(pedidos){
