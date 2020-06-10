@@ -7,8 +7,31 @@ export default function CompraFinalizada(props){
 
     useEffect(() => {
         let usuario = JSON.parse(localStorage.getItem("usuario"))
-        Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
+      
         axios.get(`http://localhost:8080/Mail/${usuario.email}/${100}/${usuario.username}`).then(res => console.log(res))
+        if(JSON.parse(localStorage.getItem("usuario")).username){
+           
+            axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
+            {
+                productos: localStorage.getItem("productos"),
+                nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
+            })
+            .then(res => console.log(res))
+            .catch(e => console.log(e))
+        }else{
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/Producto/decrementarStock',
+                data: {
+                    'productos': localStorage.getItem("productos"),
+                }
+             })
+            .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
+            .catch(e => console.log(e))
+        }
+
+        
+        localStorage.removeItem("productos")
     })
 
     return (
