@@ -46,7 +46,6 @@ export default class Factura extends React.Component{
         this.esEmailValido = this.esEmailValido.bind(this)
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
-        this.enviarCobroMercadoPago = this.enviarCobroMercadoPago.bind(this)   
         this.handleMercadoPago = this.handleMercadoPago.bind(this)     
     }
     componentDidMount(){
@@ -103,47 +102,21 @@ export default class Factura extends React.Component{
             return 
         }
       this.setState({loading: true}, () => {
-            if(JSON.parse(localStorage.getItem("usuario")).username){
-           
-                axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/MP/PagoDeProducto',
+                data: 
                 {
                     productos: JSON.parse(localStorage.getItem("productos")),
-                    nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
-                })
-                .then(res => console.log(res.data))
-                    //this.enviarCobroMercadoPago())
+                    nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
+                }
+            })  .then(res => this.handleMercadoPago(res.data))
                 .catch(e => console.log(e))
-        
-            }else{
-                axios({
-                    method: 'post',
-                    url: 'http://localhost:8080/Producto/decrementarStock',
-                    data: {
-                        'productos': JSON.parse(localStorage.getItem("productos")),
-                    }
-                 })
-                .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
-                .catch(e => console.log(e))
-            }
-    })
-    }
-    enviarCobroMercadoPago(){
-        let productos = this.obtenerProductos();
-        let usuario = JSON.parse(localStorage.getItem("usuario")).username
-        axios({
-            method: 'post',
-            url: 'http://localhost:8080/MP/PagoDeProducto',
-            data: 
-            {
-                productos: productos,
-                nombreUsuario: usuario
-            }
-        }).then(res => this.handleMercadoPago(res.data))
-        .catch(e => console.log(e))
-            this.setState({loading: false})
-    }
-
+      })
+    
+}
     handleMercadoPago(url){
+        this.setState({loading: false})
         window.location.replace(url)
     }
 

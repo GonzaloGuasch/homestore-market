@@ -88,9 +88,9 @@ export default class LogInRegister extends React.Component{
                     method: 'post',
                     url: 'http://localhost:8080/Usuarios/crearUsuario',
                     data: {
-                        "username": this.state.nombreDeUsuario,
-                        "email": this.state.correoElectronico,
-                        "password": this.state.contraseña
+                        "username": this.state.nombreDeUsuario.trim(),
+                        "email": this.state.correoElectronico.trim(),
+                        "password": this.state.contraseña.trim()
                 }}).then(res => this.iniciarSesion(res.data))
                    .catch(e => console.log(e))
                 })
@@ -119,7 +119,7 @@ export default class LogInRegister extends React.Component{
             }) 
             return    
         }  
-        axios.get('http://localhost:8080/Usuarios/logIn/' + this.state.email + '/' + this.state.password )
+        axios.get('http://localhost:8080/Usuarios/logIn/' + this.state.email.trim() + '/' + this.state.password.trim() )
         .then(res => this.checkLogIn(res.data))
         .catch(e => console.log(e) )
         this.setState({
