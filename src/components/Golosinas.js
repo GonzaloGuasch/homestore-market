@@ -72,6 +72,7 @@ export default class Golosinas extends React.Component{
         <div className="header-container">
         <div className="path">
             <a href={"/"}>Inicio</a> / {this.props.location.state.nombreCategoria}
+            
         </div>
         <div className="Resultados">
             Resultados: {productoTuplas.length}

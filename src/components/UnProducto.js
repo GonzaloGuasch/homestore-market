@@ -15,6 +15,7 @@ export default class UnProducto extends React.Component{
         this.remove = this.remove.bind(this)
         this.agregarACarrito = this.agregarACarrito.bind(this)
         this.updetearCarrito = this.updetearCarrito.bind(this)
+        this.estaProductoEnCarro = this.estaProductoEnCarro.bind(this)
     }
 
     agregarACarrito(){
@@ -31,16 +32,40 @@ export default class UnProducto extends React.Component{
         }
         alert("No queda stock para ese producto")
     }
+    estaProductoEnCarro(productosEnCarro){
+        let estaEnCarro = false
+        productosEnCarro.map((unProductoEnCarro, i) => {estaEnCarro = estaEnCarro || unProductoEnCarro.producto === this.state.info.nombre })
+           return estaEnCarro
+    }
     updetearCarrito() {
-        if (localStorage.getItem(this.state.info.id)) { 
+        if (localStorage.getItem("productos")) { 
+            let productosEnCarro = JSON.parse(localStorage.getItem("productos"))
             //Agrego si ya esta
-            let valoresDeProducto = localStorage.getItem(this.state.info.id)
-            valoresDeProducto = parseInt(valoresDeProducto) + parseInt(this.state.value)
-            localStorage.setItem(this.state.info.id, valoresDeProducto)
+            if(this.estaProductoEnCarro(productosEnCarro)){
+                productosEnCarro.map((unProductoEnCarro, i) => {
+                    if(unProductoEnCarro.producto === this.state.info.nombre){
+                        unProductoEnCarro.cantidad = unProductoEnCarro.cantidad + this.state.value
+                    }
+                })
+            }else{
+                //Agrego si falta
+                let producto = [{   'producto': this.state.info.nombre,
+                                    'id': this.state.info.id,
+                                    'precio': this.state.info.precio,
+                                    'cantidad': this.state.value}]
+                    productosEnCarro = productosEnCarro.concat(producto)      
+            }
+          
+            localStorage.setItem("productos", JSON.stringify(productosEnCarro))
+            
         }
         else {
-            //Agrego si falta
-            localStorage.setItem(this.state.info.id, this.state.value)
+            //Agrego el primer producto
+            let producto = [{'producto': this.state.info.nombre,
+                            'id': this.state.info.id,
+                            'precio': this.state.info.precio,
+                            'cantidad': this.state.value}]
+            localStorage.setItem("productos", JSON.stringify(producto)  )
         }
     }
 
