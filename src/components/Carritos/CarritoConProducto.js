@@ -3,8 +3,6 @@ import Header from '../Header'
 import BarraBusqueda from '../BarraBusqueda'
 import '../../css/CarritoConProducto.css'
 import ProductoEnCarro from '../ProductoEnCarro'
-import axios from 'axios'
-
 
 export default class CarritoConProducto extends React.Component{
     constructor(props) {
@@ -16,39 +14,25 @@ export default class CarritoConProducto extends React.Component{
         this.borrarTodo = this.borrarTodo.bind(this)
         this.updetearValor = this.updetearValor.bind(this)
         this.volverAComprar = this.volverAComprar.bind(this)
-        this.buscarProductoPorID = this.buscarProductoPorID.bind(this)
-        this.agregarProducto = this.agregarProducto.bind(this)
         this.completarFactura = this.completarFactura.bind(this)
     }
     componentDidMount(){
-        Object.keys(localStorage).map((unIdDeProducto, i) => {
-                                                          if(!isNaN(unIdDeProducto)){
-                                                            this.buscarProductoPorID(unIdDeProducto)
-                                                        }})
+       this.setState({
+           productos: JSON.parse(localStorage.getItem("productos"))
+       })
     }
     
-    buscarProductoPorID(idDeProducto){
-        axios.get('http://localhost:8080/Producto/getProducto/' + idDeProducto).then(res => this.agregarProducto(res.data, localStorage.getItem(idDeProducto)))
-    }
-
-    agregarProducto(unProducto, cantidadEnCarro){
-        const unProductoConCantidadEnCarro = Object.assign(unProducto, {'cantidad': cantidadEnCarro})
-        this.setState({ 
-            productos: this.state.productos.concat([unProductoConCantidadEnCarro])
-          })
-    }
-
     borrarTodo(){
        this.setState({
            productos: []
        })
-       Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
+       localStorage.removeItem("productos")
        this.updetearValor()
     }
     volverAComprar(){
         this.props.history.push('/')
     }
-    updetearValor(res){
+    updetearValor(){
         window.location.reload();
     }
 

@@ -14,7 +14,7 @@ export default class ProductoEnCarro extends React.Component{
     }
     componentDidMount(){
         this.setState({
-            nombre: this.props.info.nombre,
+            nombre: this.props.info.producto,
             id: this.props.info.cantidad,
             precio: this.props.info.precio,
               unidad: this.props.info.unidad,
