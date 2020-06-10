@@ -46,7 +46,6 @@ export default class Factura extends React.Component{
         this.esEmailValido = this.esEmailValido.bind(this)
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
-        this.obtenerProductos = this.obtenerProductos.bind(this)
         this.enviarCobroMercadoPago = this.enviarCobroMercadoPago.bind(this)   
         this.handleMercadoPago = this.handleMercadoPago.bind(this)     
     }
@@ -88,13 +87,7 @@ export default class Factura extends React.Component{
             errorMessage: mensaje_error
         })
     }
-    obtenerProductos(){
-        let productos = [];
-        this.state.productos.map((unProducto, i) => productos.push({"nombre": unProducto.nombre,
-                                                                    "cantidad": unProducto.cantidad
-                                                                                        }))                                                                               
-        return productos                                                                                
-    }
+   
     enviarFactura(){
         this.borrarErroresViejos()
         if(false){ //this.hayCamposVacios()){
@@ -110,15 +103,15 @@ export default class Factura extends React.Component{
             return 
         }
       this.setState({loading: true}, () => {
-        let p = this.obtenerProductos() 
             if(JSON.parse(localStorage.getItem("usuario")).username){
            
                 axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
                 {
-                    productos: p,
+                    productos: JSON.parse(localStorage.getItem("productos")),
                     nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
                 })
-                .then(res => this.enviarCobroMercadoPago())
+                .then(res => console.log(res.data))
+                    //this.enviarCobroMercadoPago())
                 .catch(e => console.log(e))
         
             }else{
@@ -126,7 +119,7 @@ export default class Factura extends React.Component{
                     method: 'post',
                     url: 'http://localhost:8080/Producto/decrementarStock',
                     data: {
-                        'productos': p,
+                        'productos': JSON.parse(localStorage.getItem("productos")),
                     }
                  })
                 .then(res => alert("En tu mail se encuentra la factura! Gracias por la compra"))
