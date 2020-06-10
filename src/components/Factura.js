@@ -111,7 +111,6 @@ export default class Factura extends React.Component{
             return 
         }
       this.setState({loading: true}, () => {
-        axios.get(`http://localhost:8080/Mail/${this.state.email}/${100}/${this.state.nombre}`).then(res => console.log(res))
         let p = this.obtenerProductos() 
             if(JSON.parse(localStorage.getItem("usuario")).username){
            
@@ -149,15 +148,13 @@ export default class Factura extends React.Component{
             }
         }).then(res => this.handleMercadoPago(res.data))
         .catch(e => console.log(e))
-            //res => this.facturaTerminada())
+            this.setState({loading: false})
     }
     handleMercadoPago(url){
         window.location.replace(url)
     }
     facturaTerminada(){
-        this.setState({loading: false})
-        alert("En tu mail se encuentra la factura! Gracias por la compra")
-        Object.keys(localStorage).map((unaKey, i) => { if(!isNaN(unaKey)){localStorage.removeItem(unaKey)}})
+        
         this.props.history.push("/")
     }
     calcularValor(){

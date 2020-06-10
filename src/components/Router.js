@@ -9,6 +9,7 @@ import LogInRegister from '../components/LogInRegister.js'
 import PerfilUsuario from '../components/PerfilUsuario.js'
 import ActualizarProductos from '../components/ActualizarPedidos.js'
 import Actualizar from '../components/Actualizar.js'
+import CompraFinalizada from '../components/CompraFinalizada.js'
 
 export default function Router(){
     return(
@@ -23,6 +24,7 @@ export default function Router(){
                 <Route exact path="/Pedidos" component={PerfilUsuario}></Route>
                 <Route exact path="/ActualizarProductos" component={ActualizarProductos}></Route>
                 <Route exact path="/Actualizar" component={Actualizar}></Route>
+                <Route exact path="/CompraFinalizada" component={CompraFinalizada}></Route>
                 
             </Switch>
         </BrowserRouter>

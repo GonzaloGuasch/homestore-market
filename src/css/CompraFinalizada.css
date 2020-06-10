@@ -1,0 +1,19 @@
+.compraFinalizada-container{
+    margin-left: 455px;
+    margin-top: 70px;
+}
+
+.volver-home{
+    margin-left: 120px;
+    margin-top: 12px;
+    background-color: #00c74c;
+    border-radius: 20px;
+    border-style: none;
+    color: white;
+
+    padding: 5px 10px 5px 10px;
+}
+
+#little-space{
+    margin-left: 80px;
+}
