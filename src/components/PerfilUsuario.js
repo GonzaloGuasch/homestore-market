@@ -23,7 +23,7 @@ export default class PerfilUsuario extends React.Component{
         })
     }
     render() {
-        let oldPedidos = this.state.pedidos.map((aPedido, i) => <UnPedido info={aPedido} />)
+        let oldPedidos = this.state.pedidos.map((aPedido, i) => <UnPedido info={aPedido} historial={this.props.history}/>)
         return (
             <Fragment>
                 <Header></Header>
