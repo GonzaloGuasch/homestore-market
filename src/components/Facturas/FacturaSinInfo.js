@@ -141,16 +141,16 @@ export default class FacturaSinInfo extends React.Component{
         })  .then(res => console.log(res))
             .catch(e => console.log(e))
 
-     //   axios({
-     //       method: 'post',
-     //       url: 'http://localhost:8080/MP/PagoDeProducto',
-     //       data: 
-     //       {
-     //           productos: JSON.parse(localStorage.getItem("productos")),
-     //           nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
-     //       }
-     //   })  .then(res => this.handleMercadoPago(res.data))
-     //       .catch(e => console.log(e))
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/MP/PagoDeProducto',
+            data: 
+            {
+                productos: JSON.parse(localStorage.getItem("productos")),
+                nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
+            }
+        })  .then(res => this.handleMercadoPago(res.data))
+            .catch(e => console.log(e))
     }
     comprarComoGuest(){
         axios({
@@ -241,7 +241,8 @@ export default class FacturaSinInfo extends React.Component{
                 </div>
                 <div className="detalles-compra">
                     Detalles de facturación
-                </div>  
+                </div>
+                <div className="aviso-usuario">Si ingreso como usuario al llenar la factura se guardaron los datos para futuras compras</div>
             <div className="a">
                     <div className="datos-container">
                         <div className="fila-container">

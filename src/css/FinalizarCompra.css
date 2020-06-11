@@ -174,3 +174,8 @@
     border-radius: 2px;
     padding: 8px 12px 8px 40px;
 }
+
+.aviso-usuario{
+    margin-left: 130px;
+    font-weight: 700;
+}

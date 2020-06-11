@@ -6,12 +6,13 @@ export default function FacturaContainer(props){
     let factura;
     if( localStorage.getItem("usuario") !== null && 
         JSON.parse(localStorage.getItem("usuario").tieneFacturaz === null)){
-         
-            factura = <FacturaSinInfo  productos={props.location.state.productos} 
-                            valorTotal={props.location.state.valorTotal}/>
+
+            factura = <FacturaConInfo   productos={props.location.state.productos} 
+                                        valorTotal={props.location.state.valorTotal}/>  
+           
     }else{
-        factura = <FacturaConInfo   productos={props.location.state.productos} 
-                                    valorTotal={props.location.state.valorTotal}/>  
+             factura = <FacturaSinInfo   productos={props.location.state.productos} 
+                                         valorTotal={props.location.state.valorTotal}/>
     }
 
         return (     
