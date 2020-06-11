@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import '../css/Actualizar.css'
+import '../../css/Actualizar.css'
 
 export default class Actualizar extends React.Component{
     constructor(props) {
@@ -37,7 +37,10 @@ export default class Actualizar extends React.Component{
             return
         }
 
-       this.props.history.push("/ActualizarProductos")
+       this.props.history.push({
+            pathname: "/ActualizarProductos",
+            state: {isLog: true}
+        })
     }
     render() {
         return (

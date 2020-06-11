@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
-import Reader from '../components/Excel_reader/Reader'
+import Reader from '../Excel_reader/Reader'
 
 export default class ActualizarProductos extends React.Component{
     constructor(props) {
         super(props);
-        
+       
     }
 
     render() {
         return (
             <Fragment>
-              <Reader></Reader>
+             {this.props.location.state.isLog ? <Reader/> : 'No tenes permisos de edicion'}
             </Fragment>
         );
     }

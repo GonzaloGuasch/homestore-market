@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
-import Header from '../components/Header'
-import NavBar from '../components/BarraBusqueda'
-import '../css/FinalizarCompra.css'
-import Boton from '../components/WppButton'
+import Header from '../Header'
+import NavBar from '../BarraBusqueda'
+import '../../css/FinalizarCompra.css'
+import Boton from '../WppButton'
 import axios from 'axios'
 import Loader from 'react-loader-spinner';
 
-export default class Factura extends React.Component{
+export default class FacturaSinInfo extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -47,11 +47,14 @@ export default class Factura extends React.Component{
         this.borrarErroresViejos = this.borrarErroresViejos.bind(this)
         this.esTelvalio = this.esTelvalio.bind(this)
         this.handleMercadoPago = this.handleMercadoPago.bind(this)     
+        this.comprarComoUsuario = this.comprarComoUsuario.bind(this)
+        this.hayUsuarioLogeado = this.hayUsuarioLogeado.bind(this)
+        this.comprarComoGuest = this.comprarComoGuest.bind(this)
     }
     componentDidMount(){
         this.setState({
-            valorTotal: this.props.location.state.valorTotal,
-            productos: this.props.location.state.productos
+            valorTotal: this.props.valorTotal,
+            productos: this.props.productos
         })
     }
     hayCamposVacios(){
@@ -101,20 +104,67 @@ export default class Factura extends React.Component{
             this.displayError("Numero de telefono no valido")
             return 
         }
-      this.setState({loading: true}, () => {
-            axios({
-                method: 'post',
-                url: 'http://localhost:8080/MP/PagoDeProducto',
-                data: 
-                {
-                    productos: JSON.parse(localStorage.getItem("productos")),
-                    nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
+            this.setState({loading: true}, () => {
+                 if(this.hayUsuarioLogeado()){
+                    this.comprarComoUsuario()
+                 }else{
+                    this.comprarComoGuest()
                 }
-            })  .then(res => this.handleMercadoPago(res.data))
-                .catch(e => console.log(e))
-      })
+            })
     
-}
+    }
+    hayUsuarioLogeado(){
+        return localStorage.getItem("usuario")  !== null
+    }
+    comprarComoUsuario(){
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/Usuarios/GuardarInfoDeFactura',
+            data: 
+            {   
+                usuarioFacturaInfo: {
+                        nombre: this.state.nombre,
+                        apellido: this.state.Apellido,
+                        pais: this.state.pais,
+                        provincia: this.state.provincia,
+                        localidad: this.state.localidad,
+                        direccion: this.state.direccion,
+                        observaciones: this.state.observaciones,
+                        email: this.state.email,
+                        telefono: this.state.telefono,
+                        comentarios: this.state.comentarios,
+                        codigoPostal: this.state.codigoPostal
+                    },
+
+                    username: JSON.parse(localStorage.getItem("usuario")).username
+            }
+        })  .then(res => console.log(res))
+            .catch(e => console.log(e))
+
+     //   axios({
+     //       method: 'post',
+     //       url: 'http://localhost:8080/MP/PagoDeProducto',
+     //       data: 
+     //       {
+     //           productos: JSON.parse(localStorage.getItem("productos")),
+     //           nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
+     //       }
+     //   })  .then(res => this.handleMercadoPago(res.data))
+     //       .catch(e => console.log(e))
+    }
+    comprarComoGuest(){
+        axios({
+            method: 'post',
+            url: 'http://localhost:8080/MP/PagoDeProducto',
+            data: 
+            {
+                productos: JSON.parse(localStorage.getItem("productos")),
+                nombreUsuario: 'Guest'
+            }
+        })  .then(res => this.handleMercadoPago(res.data))
+            .catch(e => console.log(e))
+    }
+
     handleMercadoPago(url){
         this.setState({loading: false})
         window.location.replace(url)
@@ -172,7 +222,7 @@ export default class Factura extends React.Component{
     }
     updateApellido(e){
         this.setState({
-            apellido: e.target.value
+            Apellido: e.target.value
         })
     }
     updateNombre(e){

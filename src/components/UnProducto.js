@@ -91,8 +91,6 @@ export default class UnProducto extends React.Component{
                 tieneStock: true 
             })
             return 
-            console.log("value: " + this.state.value)
-            console.log("stock: " + this.state.info.stock)
         }
         if(this.state.value < this.state.info.stock){
             this.setState({

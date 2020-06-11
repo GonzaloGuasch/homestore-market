@@ -38,7 +38,7 @@ export default class CarritoConProducto extends React.Component{
 
     completarFactura(valorTotal){
         this.props.history.push({
-            pathname: '/Factura',
+            pathname: '/FacturaContainer',
             state: {productos: this.state.productos,
                     valorTotal: valorTotal}
         })
