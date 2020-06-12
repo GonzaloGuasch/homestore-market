@@ -135,10 +135,9 @@ export default class FacturaSinInfo extends React.Component{
                         comentarios: this.state.comentarios,
                         codigoPostal: this.state.codigoPostal
                     },
-
                     username: JSON.parse(localStorage.getItem("usuario")).username
             }
-        })  .then(res => console.log(res))
+        })  .then(res => localStorage.setItem("usuario", JSON.stringify(res.data)))
             .catch(e => console.log(e))
 
         axios({
@@ -153,6 +152,9 @@ export default class FacturaSinInfo extends React.Component{
             .catch(e => console.log(e))
     }
     comprarComoGuest(){
+        localStorage.setItem("emailGuest", this.state.email)
+        localStorage.setItem("guestName", this.state.nombre + ' ' + this.state.Apellido)
+
         axios({
             method: 'post',
             url: 'http://localhost:8080/MP/PagoDeProducto',
@@ -166,7 +168,6 @@ export default class FacturaSinInfo extends React.Component{
     }
 
     handleMercadoPago(url){
-        this.setState({loading: false})
         window.location.replace(url)
     }
 
