@@ -5,6 +5,7 @@ import axios from 'axios'
 import BarraBusqueda from './BarraBusqueda'
 import UnProducto from './UnProducto.js'
 import Boton from '../components/WppButton'
+import ErrorWindow from '../components/Error/ErrorWindow.js'
 
 export default class Golosinas extends React.Component{
     constructor(props){
@@ -20,39 +21,42 @@ export default class Golosinas extends React.Component{
     }
     componentDidMount(){
         //el cero es el numero de página
-        axios.get('http://localhost:8080/Producto/traerTodos/0').then(res => this.montarProductos(res.data))
+        //axios.get('http://localhost:8080/Producto/traerTodos/0').then(res => this.montarProductos(res.data))
         //TO DO sacar el endpoint de todos y poner el de la categoria que pasamos por props 
         //asi tengo todas las categorias y uso el mismo component
-        //axios.get('http://localhost:8080/Producto/TraerDeRubro/{RUBRO}') => anda ya voh
+        axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + 0)
+                                                        .then(res => this.montarProductos(res.data))
 
         //Una funcion que vea el la longitud de los productos de esta categoria,
         //asi se cuantos botones de paginas agregao abajo
     }
-
     montarProductos(elementos){
-       const golosinas = elementos.map((unElemento, i) => <UnProducto info={unElemento}/>);
         this.setState({
-            golosinas: golosinas
+            golosinas: []
         })
+       const golosinas = elementos.map((unElemento, i) => <UnProducto info={unElemento}/>);
+       this.setState({
+        golosinas: golosinas
+    })
     }
    cargarProductos(numeroDePagina){
-    axios.get('http://localhost:8080/Producto/traerTodos/' + numeroDePagina * 9).then(res => this.montarProductos(res.data))
+    axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + numeroDePagina * 8).then(res => this.montarProductos(res.data))
     this.setState({
         ultimaPaginaVistida: numeroDePagina
     })
    }
 
    cargarProductoDePaginaAnterior(){
-    axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida - 1) * 9).then(res => this.montarProductos(res.data))
         if(this.state.ultimaPaginaVistida > 0){
+            axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + (this.state.ultimaPaginaVistida - 1) * 8).then(res => this.montarProductos(res.data))
             this.setState({
                 ultimaPaginaVistida: this.state.ultimaPaginaVistida - 1
             })
         }   
     }
    cargarProductoDePaginaSiguiente(){
-    axios.get('http://localhost:8080/Producto/traerTodos/' + (this.state.ultimaPaginaVistida + 1) * 9).then(res => this.montarProductos(res.data))
         if(this.state.ultimaPaginaVistida < 3){
+            axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + (this.state.ultimaPaginaVistida + 1) * 8).then(res => this.montarProductos(res.data))
             this.setState({
                 ultimaPaginaVistida: this.state.ultimaPaginaVistida + 1
             })
@@ -60,9 +64,9 @@ export default class Golosinas extends React.Component{
     }
 
    render(){
-        const productoTuplas = []
+        const productos = []
         this.state.golosinas.forEach((unGolosina, index) => {
-            productoTuplas.push(<div className="producto">{unGolosina}</div>)
+            productos.push(<div className="producto">{unGolosina}</div>)
         })
         
     return(
@@ -75,11 +79,11 @@ export default class Golosinas extends React.Component{
             
         </div>
         <div className="Resultados">
-            Resultados: {productoTuplas.length}
+            Resultados: {productos.length}
         </div>
         </div>
          <div className="galles">
-            {productoTuplas}
+            {productos}
          </div>
             <div className="paginador">
                 <input type="button" value="<" className="button-paginado" onClick={this.cargarProductoDePaginaAnterior}/> 

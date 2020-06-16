@@ -20,12 +20,15 @@ export default class App extends React.Component {
        <BarraBusqueda></BarraBusqueda>
        <Carrusel></Carrusel>
        <div className="categorias-de-app">
-       <Categoria categoria={"Alimentos"} imagen={golosina} history ={this.props.history}/>
+       <Categoria categoria={"ALIMENTOS"} imagen={golosina} history ={this.props.history}/>
        <Categoria categoria={"BEBIDAS"}  history ={this.props.history}/>
        <Categoria categoria={"CHOCOLATES"}  history ={this.props.history}/>
-       <Categoria categoria={"GALLETAS"}  history ={this.props.history}/>
+       <Categoria categoria={"ESPECIAS"}  history ={this.props.history}/>
+       <Categoria categoria={"GALLETAS Y CEREALES"}  history ={this.props.history}/>
        <Categoria categoria={"GOLOSINAS"}  history ={this.props.history}/>
+       <Categoria categoria={"INDUSTRIALES"}  history ={this.props.history}/>
        <Categoria categoria={"REPOSTERIA"}  history ={this.props.history}/>
+       
        <Boton></Boton>
        </div>
        <Footer></Footer>

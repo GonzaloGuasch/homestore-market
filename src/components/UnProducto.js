@@ -108,7 +108,9 @@ export default class UnProducto extends React.Component{
         return(
             <div className="info-producto-container">
                 <div className="image-button-container">
-                    <img src={turro} className="image-producto" alt="producto-image"/>
+                    <img src={`data:image/jpeg;base64,${this.state.info.imagenProducto}`}
+                         className="image-producto"
+                         alt="producto-image" />
                 </div>
                 <div className="descripcion-container">
                  Descripcion
