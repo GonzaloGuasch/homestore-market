@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import Header from '../components/Header'
 import BarraBusqueda from '../components/BarraBusqueda'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../css/LogInRegister.css'
 import axios from 'axios'
 
@@ -32,6 +34,7 @@ export default class LogInRegister extends React.Component{
         this.updateCorreoRegister = this.updateCorreoRegister.bind(this)
         this.updateContraseñaRegister = this.updateContraseñaRegister.bind(this)
         this.iniciarSesion = this.iniciarSesion.bind(this)
+        this.errorToast = this.errorToast.bind(this)
     }
     updateContraseñaRegister(e){
         this.setState({
@@ -68,13 +71,13 @@ export default class LogInRegister extends React.Component{
             this.setState({
                 correoElectronicoVacio: true
             })
-         
+            return
         }
         if(this.state.contraseña === ""){
             this.setState({
                 contraseñaVacia: true
             }) 
-             
+            return
         }  
         if(this.state.nombreDeUsuario === ""){
             this.setState({
@@ -94,16 +97,29 @@ export default class LogInRegister extends React.Component{
                 }}).then(res => this.iniciarSesion(res.data))
                    .catch(e => console.log(e))
                 })
-        .catch(e => alert("Mail ya registrado"))      
+        .catch(this.errorToast("Mail ya registrado"))      
+    }
+
+    errorToast(mensajeDeError){
+        toast.error(mensajeDeError, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            })
+    return toast
     }
 
     esEmailValido(correo){
-        return correo.includes("@") && (  this.state.email.includes("hotmail")||
-                                                    this.state.email.includes("gmail")  ||
-                                                    this.state.email.includes("yahoo")  ||
-                                                    this.state.email.includes("outlook")||
-                                                    this.state.email.includes("iCloud")) &&
-                                                    this.state.email.includes(".com")
+        return correo.includes("@") && (    correo.includes("hotmail")||
+                                            correo.includes("gmail")  ||
+                                            correo.includes("yahoo")  ||
+                                            correo.includes("outlook")||
+                                            correo.includes("iCloud")) &&
+                                            correo.includes(".com")
     }
 
     tryLogIn(){
@@ -153,6 +169,7 @@ export default class LogInRegister extends React.Component{
             <Fragment>
                <Header></Header>
                <BarraBusqueda></BarraBusqueda>
+               <ToastContainer/>
                 <div className="logIn-register-container">
                     <div className="singUp-container">  
                         <div> 

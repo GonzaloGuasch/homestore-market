@@ -26,7 +26,8 @@ export default class FacturaSinInfo extends React.Component{
             valorEnvio: '',
             valorTotal: 0,
             productos: [],
-            loading: false
+            loading: false,
+            metodoPago: ''
         }
         this.updateNombre = this.updateNombre.bind(this)
         this.updateApellido = this.updateApellido.bind(this)
@@ -333,6 +334,12 @@ export default class FacturaSinInfo extends React.Component{
                                             value={this.state.codigoPostal}></input></div>
                             </div>
                         </div>
+                        <div>
+                                <div className="texto-factura-info">Metodo de pago</div>
+                                <div>   <input type="radio" name="metodoPago" className="box-shadow"></input>
+                                        <input type="radio" name="metodoPago" className="box-shadow"></input>
+                                </div>
+                            </div>
                         
                         { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
                 <div className="flex-buttons">

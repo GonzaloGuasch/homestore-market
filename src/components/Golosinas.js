@@ -12,12 +12,14 @@ export default class Golosinas extends React.Component{
         super(props)
         this.state = {
             golosinas: [],
-            ultimaPaginaVistida: 0
+            ultimaPaginaVistida: 0,
+            errorOcurrr: false
         }
         this.montarProductos = this.montarProductos.bind(this)
         this.cargarProductos = this.cargarProductos.bind(this)
         this.cargarProductoDePaginaAnterior = this.cargarProductoDePaginaAnterior.bind(this)
         this.cargarProductoDePaginaSiguiente = this.cargarProductoDePaginaSiguiente.bind(this)
+        this.handleError = this.handleError.bind(this)
     }
     componentDidMount(){
         //el cero es el numero de página
@@ -26,9 +28,15 @@ export default class Golosinas extends React.Component{
         //asi tengo todas las categorias y uso el mismo component
         axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + 0)
                                                         .then(res => this.montarProductos(res.data))
+                                                        .catch(e => this.handleError())
 
         //Una funcion que vea el la longitud de los productos de esta categoria,
         //asi se cuantos botones de paginas agregao abajo
+    }
+    handleError(){
+        this.setState({
+            errorOcurrr: true
+        })
     }
     montarProductos(elementos){
         this.setState({
@@ -76,13 +84,14 @@ export default class Golosinas extends React.Component{
         <div className="header-container">
         <div className="path">
             <a href={"/"}>Inicio</a> / {this.props.location.state.nombreCategoria}
-            
+        
         </div>
         <div className="Resultados">
             Resultados: {productos.length}
         </div>
         </div>
          <div className="galles">
+         {this.state.errorOcurrr && <div className="error-no-productos">Hubo un problema, vuelva a intentarlo mas tarde</div>}
             {productos}
          </div>
             <div className="paginador">

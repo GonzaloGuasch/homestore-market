@@ -18,7 +18,8 @@ export default class UnPedido extends React.Component{
                 pathname: '/FacturaContainer',
                 state: {    
                     productos: [this.props.info],
-                    valorTotal: 0}
+                    valorTotal: this.props.info.cantidad * this.props.info.precio
+                }
             })
         }))
     }

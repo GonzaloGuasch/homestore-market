@@ -69,6 +69,12 @@ a:hover {
     padding: 0 65px;
     margin-top: 40px;
 }
+.error-no-productos{
+    text-transform: uppercase;
+    color: red;
+    font-weight: 700;
+    margin-left: 350px;
+}
 
 @media (min-width: 411px) and (max-width: 767px) {
     .Resultados{

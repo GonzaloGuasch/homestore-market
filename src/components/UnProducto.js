@@ -1,8 +1,10 @@
 import React from 'react'
 import '../css/UnProducto.css'
-import turro from '../images/4013.JPG'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class UnProducto extends React.Component{
+    
     constructor(props){
         super(props)
         this.state={
@@ -17,20 +19,47 @@ export default class UnProducto extends React.Component{
         this.updetearCarrito = this.updetearCarrito.bind(this)
         this.estaProductoEnCarro = this.estaProductoEnCarro.bind(this)
     }
-
+    
     agregarACarrito(){
         if(this.state.value === 0 && this.state.tieneStock){
-            alert("No selecionaste la cantidad que querias!")
+            toast.error('No agregaste la cantidad!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+            return toast;
+
         }
         if(this.state.tieneStock){
             this.updetearCarrito()
             this.setState({
                 value: 0
             })
-            alert("Se agrego tu producto al carrito!")
-            return
+            toast.success('Se agrego el producto al carrito!', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+            return toast
         }
-        alert("No queda stock para ese producto")
+        toast.info("No hay stock para este producto, pruebe con menos cantidad", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        return toast
     }
     estaProductoEnCarro(productosEnCarro){
         let estaEnCarro = false
@@ -137,6 +166,7 @@ export default class UnProducto extends React.Component{
                         value={this.state.botonValue} 
                         className={this.state.tieneStock ? "Agregar-boton" : "No-stock"}
                         onClick={this.agregarACarrito}/>
+                        <ToastContainer/>
                 </div>
             </div>
         )

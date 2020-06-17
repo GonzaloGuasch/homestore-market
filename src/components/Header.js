@@ -5,6 +5,8 @@ import email from '../images/email.svg'
 import phone from '../images/phone.svg'
 import carrito from '../images/carrito.svg'
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class Header extends React.Component{
     constructor(props){
@@ -30,7 +32,16 @@ actualizarBusqueda(event){
 buscar(event){
     if(event.key === 'Enter'){
         if(this.state.busquedaProducto === ''){
-            alert("No buscaste ningun producto!")
+            toast.error('No buscaste ningun producto', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                })
+                return toast
         }
         axios.get('http://localhost:8080/Producto/productosQueContengan/' + this.state.busquedaProducto)
         .then(res => this.mostarBusquedaProducto(res.data))
@@ -48,6 +59,7 @@ mostarBusquedaProducto(productosEncontrados){
     render(){
         return(
          <div className="header-container">
+          <ToastContainer/>
            <div className="image-logo-container">
                <img src={psuudoloPresentable} className="logo-container" alt="logo"/></div>
            <div className="navBar-container">
