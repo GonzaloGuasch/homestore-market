@@ -2,6 +2,7 @@ import React from 'react'
 import '../css/UnProducto.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
 
 export default class UnProducto extends React.Component{
     
@@ -11,7 +12,12 @@ export default class UnProducto extends React.Component{
             value: 0,
             info: props.info,
             botonValue: 'AGREGAR',
-            tieneStock: true
+            tieneStock: true,
+
+            imagenProducto: props.info.imagenProducto,
+            nombre: props.info.nombre,
+            stock: props.info.stock,
+            precio: props.info.precio
         }
         this.add = this.add.bind(this)
         this.remove = this.remove.bind(this)
@@ -19,7 +25,7 @@ export default class UnProducto extends React.Component{
         this.updetearCarrito = this.updetearCarrito.bind(this)
         this.estaProductoEnCarro = this.estaProductoEnCarro.bind(this)
     }
-    
+   
     agregarACarrito(){
         if(this.state.value === 0 && this.state.tieneStock){
             toast.error('No agregaste la cantidad!', {
@@ -66,7 +72,7 @@ export default class UnProducto extends React.Component{
         productosEnCarro.map((unProductoEnCarro, i) => {estaEnCarro = estaEnCarro || unProductoEnCarro.producto === this.state.info.nombre })
            return estaEnCarro
     }
-    updetearCarrito() {
+    async updetearCarrito() {
         if (localStorage.getItem("productos")) { 
             let productosEnCarro = JSON.parse(localStorage.getItem("productos"))
             //Agrego si ya esta
@@ -94,9 +100,22 @@ export default class UnProducto extends React.Component{
                             'id': this.state.info.id,
                             'precio': this.state.info.precio,
                             'cantidad': this.state.value}]
-            localStorage.setItem("productos", JSON.stringify(producto)  )
+            localStorage.setItem("productos", JSON.stringify(producto))
+           
         }
+
+       await axios.post('http://localhost:8080/Producto/decrementarStock',{
+            productos:  [
+                            {
+                              'producto': this.state.info.nombre, 
+                              'id': this.state.info.id,
+                              'precio': this.state.info.precio,
+                              'cantidad': this.state.value  
+                            }
+                        ]
+        })
     }
+
 
     add(){
       if(this.state.value < this.state.info.stock){
@@ -137,7 +156,7 @@ export default class UnProducto extends React.Component{
         return(
             <div className="info-producto-container">
                 <div className="image-button-container">
-                    <img src={`data:image/jpeg;base64,${this.state.info.imagenProducto}`}
+                    <img src={`data:image/jpeg;base64,${this.state.imagenProducto}`}
                          className="image-producto"
                          alt="producto-image" />
                 </div>
@@ -145,13 +164,13 @@ export default class UnProducto extends React.Component{
                  Descripcion
                 </div>
                 <div className="nombre-container">
-                {this.state.info.nombre}   
+                {this.state.nombre}   
                 </div>
                 <div>
-                    {this.state.info.stock > 0? 'Hay stock' : 'Sin stock'}
+                    {this.state.stock > 0? 'Hay stock' : 'Sin stock'}
                 </div>
                 <div className="valor-container">
-                    ${this.state.info.precio}
+                    ${this.state.precio}
                 </div>
                
                 <div className="contador-container">

@@ -23,9 +23,6 @@ export default class Golosinas extends React.Component{
     }
     componentDidMount(){
         //el cero es el numero de página
-        //axios.get('http://localhost:8080/Producto/traerTodos/0').then(res => this.montarProductos(res.data))
-        //TO DO sacar el endpoint de todos y poner el de la categoria que pasamos por props 
-        //asi tengo todas las categorias y uso el mismo component
         axios.get('http://localhost:8080/Producto/TraerDeRubro/'+ this.props.location.state.nombreCategoria + '/' + 0)
                                                         .then(res => this.montarProductos(res.data))
                                                         .catch(e => this.handleError())

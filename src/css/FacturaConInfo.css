@@ -2,3 +2,13 @@
     margin-left: 131px;
     color:#555555;
 }
+
+.input-box{
+    border-radius: 10px;
+    border-style: 2px solid black;
+    padding-left: 10px;
+}
+
+#informacion-r{
+    font-weight: bold;
+}

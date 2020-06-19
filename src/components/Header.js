@@ -18,6 +18,7 @@ export default class Header extends React.Component{
     this.actualizarBusqueda = this.actualizarBusqueda.bind(this)
     this.buscar = this.buscar.bind(this)
     this.mostarBusquedaProducto = this.mostarBusquedaProducto.bind(this)
+    this.noProductoFound = this.noProductoFound.bind(this)
 }
 componentDidMount(){
     this.setState({
@@ -45,9 +46,21 @@ buscar(event){
         }
         axios.get('http://localhost:8080/Producto/productosQueContengan/' + this.state.busquedaProducto)
         .then(res => this.mostarBusquedaProducto(res.data))
+        .catch(this.noProductoFound())
     }
 }
-
+noProductoFound(){
+    toast.error('No hay productos con ese nombre', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        })
+        return toast
+}
 mostarBusquedaProducto(productosEncontrados){
    this.props.history.push({
     pathname: "/ResultadoBusqueda", 

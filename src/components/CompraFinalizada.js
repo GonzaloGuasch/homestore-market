@@ -42,7 +42,7 @@ export default function CompraFinalizada(props){
 
         
         localStorage.removeItem("productos")
-    })
+    }, [])
 
     return (
         <Fragment>
