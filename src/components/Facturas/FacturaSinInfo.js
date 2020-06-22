@@ -93,8 +93,8 @@ export default class FacturaSinInfo extends React.Component{
    
     enviarFactura(){
         this.borrarErroresViejos()
-        if(false){ //this.hayCamposVacios()){
-            this.displayError('No dejes campos vacios!')
+        if(this.hayCamposVacios()){
+            this.displayError('!No dejes campos vacios!')
             return
         }
         if(false){ //!this.esEmailValido()){

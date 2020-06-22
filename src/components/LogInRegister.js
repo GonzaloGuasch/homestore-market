@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Header from '../components/Header'
 import BarraBusqueda from '../components/BarraBusqueda'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../css/LogInRegister.css'
 import axios from 'axios'
@@ -169,7 +169,6 @@ export default class LogInRegister extends React.Component{
             <Fragment>
                <Header></Header>
                <BarraBusqueda></BarraBusqueda>
-               <ToastContainer/>
                 <div className="logIn-register-container">
                     <div className="singUp-container">  
                         <div> 

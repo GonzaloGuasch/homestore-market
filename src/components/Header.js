@@ -19,6 +19,7 @@ export default class Header extends React.Component{
     this.buscar = this.buscar.bind(this)
     this.mostarBusquedaProducto = this.mostarBusquedaProducto.bind(this)
     this.noProductoFound = this.noProductoFound.bind(this)
+    this.cantidadDeProductosEnCarrito = this.cantidadDeProductosEnCarrito.bind(this)
 }
 componentDidMount(){
     this.setState({
@@ -67,6 +68,16 @@ mostarBusquedaProducto(productosEncontrados){
     state: {productos: productosEncontrados}}
        )
 }
+cantidadDeProductosEnCarrito(){
+    let productos = JSON.parse(localStorage.getItem("productos"))
+    let cantidadTotal = 0
+    if(productos) {
+        productos.map((unProducto, i) => cantidadTotal = cantidadTotal + unProducto.cantidad)
+        return cantidadTotal
+    }else {
+        return 0
+    }
+}
 
 
     render(){
@@ -95,7 +106,10 @@ mostarBusquedaProducto(productosEncontrados){
                        </div>
                        <div className="carrito-container">
                        <img src={carrito} className="logo-email" alt="img-carrito"></img>
-                           <a href="/Carrito">Carrito</a>
+                            <div className="carrito-cantidad-wrapper">
+                                <div className="carrito-wrapper"><a href="/Carrito">Carrito</a></div>
+                                <div className="cantidad-wrapper">{this.cantidadDeProductosEnCarrito()}</div>
+                            </div>
                        </div>
          
           </div>

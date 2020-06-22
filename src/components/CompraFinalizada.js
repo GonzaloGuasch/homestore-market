@@ -13,11 +13,11 @@ export default function CompraFinalizada(props){
             })
             .then(res => console.log(res))
             let usuario = JSON.parse(localStorage.getItem("usuario"))
-            axios.get(`http://localhost:8080/Mail/${usuario.email}/${100}/${usuario.username}`).then(res => console.log(res))
+            axios.get(`http://localhost:8080/Mail/EmailUsuario/${usuario.email}/${100}/${usuario.username}`).then(res => console.log(res))
             axios.post('http://localhost:8080/Usuarios/GuardarFactura', 
             {
                 productos: JSON.parse(localStorage.getItem("productos")),
-                nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username 
+                nombreUsuario: usuario.username 
             })
             .then(res => "usuario" + console.log(res))
             .catch(e => console.log(e)) 
@@ -27,10 +27,9 @@ export default function CompraFinalizada(props){
             let emailGuest = localStorage.getItem("emailGuest")
             let guestUsername = localStorage.getItem("guestName")
             
-            localStorage.removeItem("guestName")
-            localStorage.removeItem("emailGuest")
-
-            axios.get(`http://localhost:8080/Mail/${emailGuest}/${100}/${guestUsername}`).then(res => console.log(res))    
+            axios.get(`http://localhost:8080/Mail/EmailGuest/${emailGuest}/${guestUsername}`)
+                .then(res => console.log(res))
+                .catch(e => console.log(e))    
             
             axios.post('http://localhost:8080/Producto/decrementarStock',
             {
@@ -38,6 +37,9 @@ export default function CompraFinalizada(props){
             })
             .then(res => "guest" + console.log(res))
             .catch(e => console.log(e))
+
+            localStorage.removeItem("guestName")
+            localStorage.removeItem("emailGuest")
         }
 
         
@@ -47,8 +49,8 @@ export default function CompraFinalizada(props){
     return (
         <Fragment>
             <div className="compraFinalizada-container"> 
-                <div>! GRACIAS POR COMPRAR EN HOME STORE MARKET !</div>    
-                <div id="little-space">SU FACTURA ESTA EN SU EMAIL</div>
+                <div>!GRACIAS POR COMPRAR EN HOME STORE MARKET!</div>    
+                <div id="little-space">SU FACTURA ESTA EN El EMAIL</div>
                 <input  type="button" 
                         value="Volver al inicio"
                         className="volver-home"

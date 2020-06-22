@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { toast } from 'react-toastify'
+import Loader from 'react-loader-spinner'
 import '../css/UnPedido.css'
-import Loader from 'react-loader-spinner';
+import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
 
 export default class UnPedido extends React.Component{
@@ -29,12 +31,13 @@ export default class UnPedido extends React.Component{
      repetirPedido(){
          this.setState(({loading: true}, () => {
              axios.get('http://localhost:8080/Producto/hayStockPara/' + this.props.info.id_producto + '/' + this.state.cantidad)
-                .catch(e => this.pedidoImposibleDeRealizar(e.response.data.details))
-                .then(res => this.repetirPedidoExitoso(res.response))
+                .then(res => {this.repetirPedidoExitoso(res.response)
+                }).catch(e => {this.pedidoImposibleDeRealizar(e.response.data.details)
+                    })
         }))
     }
-    async repetirPedidoExitoso(){
-       await await axios.post('http://localhost:8080/Producto/decrementarStock',{
+     repetirPedidoExitoso(){
+         axios.post('http://localhost:8080/Producto/decrementarStock',{
             productos: [
                 {
                     'producto': this.props.info.nombreProducto, 
@@ -52,15 +55,16 @@ export default class UnPedido extends React.Component{
         }))
     }
     pedidoImposibleDeRealizar(mensajeDeFaltaDeStock){
-        if(mensajeDeFaltaDeStock.includes(0)){
-            alert("Lamentablemente no tenemos stock para ese producto")
-        }else{
-            alert(mensajeDeFaltaDeStock + " ,elija menos cantidad por favor")
-        }
+        toast.configure();
+        toast.info(mensajeDeFaltaDeStock, {
+            position: toast.POSITION.BOTTOM_CENTER
+          });
     }
+
     
     render() {
         return (
+            <Fragment>
             <div className="Pedido-container">
                 <div className="pedido-button">
                     <div className="nombre-cantidad">
@@ -79,6 +83,7 @@ export default class UnPedido extends React.Component{
                     </div>
                 </div>
             </div>
+            </Fragment>
         );
     }
     

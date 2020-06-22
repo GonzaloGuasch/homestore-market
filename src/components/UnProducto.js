@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/UnProducto.css'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios'
 
@@ -28,16 +28,10 @@ export default class UnProducto extends React.Component{
    
     agregarACarrito(){
         if(this.state.value === 0 && this.state.tieneStock){
-            toast.error('No agregaste la cantidad!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                });
-            return toast;
+            toast.configure();
+            return toast.error('No agregaste la cantidad!', {
+                position: toast.POSITION.TOP_CENTER
+              });
 
         }
         if(this.state.tieneStock){
@@ -45,17 +39,13 @@ export default class UnProducto extends React.Component{
             this.setState({
                 value: 0
             })
-            toast.success('Se agrego el producto al carrito!', {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+            toast.configure();
+            return toast.success('Se agrego el producto al carrito!', {
+                position: toast.POSITION.TOP_CENTER
                 });
-            return toast
+             
         }
+        toast.configure();
         toast.info("No hay stock para este producto, pruebe con menos cantidad", {
             position: "top-center",
             autoClose: 5000,
@@ -185,7 +175,6 @@ export default class UnProducto extends React.Component{
                         value={this.state.botonValue} 
                         className={this.state.tieneStock ? "Agregar-boton" : "No-stock"}
                         onClick={this.agregarACarrito}/>
-                        <ToastContainer/>
                 </div>
             </div>
         )
