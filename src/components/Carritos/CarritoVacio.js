@@ -25,7 +25,6 @@ export default class Carrito extends React.Component{
                </div>
                <div className="display-mensaje-carrito-vacio">
                    Tu carrito esta vacio 
-                   
                </div>
                <div className="seguir-comprando-button-div">
                <input type="button" 

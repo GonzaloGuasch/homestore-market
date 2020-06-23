@@ -34,3 +34,13 @@
 .seguir-comprando-button-input:hover{
     background-color: #ab7324;
 }
+
+@media (min-width: 411px) and (max-width: 767px) {
+
+    .display-mensaje-carrito-vacio{
+        margin-left: 40px;
+    }
+    .seguir-comprando-button-input{
+        margin-left: 45px;
+    }
+}

@@ -188,14 +188,13 @@ export default class LogInRegister extends React.Component{
                           <input    type="button" 
                                     value="INGRESAR" 
                                     className="ingresar"
+                                    id="ingresar-login"
                                     onClick={this.tryLogIn}></input>
                                     {this.state.showError && <p className="error-display">{this.state.error}</p>}
                         </div>
                     </div>
                     <div className="register-container">
-                        <div className="titulo-login">
-                          <div className="data" id="register-id">REGISTER</div>
-                        </div>
+                        <div className="titulo-login">REGISTRARSE</div>
                           <div>
                               <div className="data">Nombre de usuario</div>
                               <div><input   type="text" 
