@@ -63,14 +63,6 @@
     display: flex;
 }
 
-
-
-
-
-
-
-
-
 .factura-carrito-container{
     display:flex;
     border-right: 1px solid #ececec;
@@ -153,4 +145,46 @@
 
 .boton-finalizar-compra:hover{
     background-color: #3c6b33;
+}
+
+@media (min-width: 411px) and (max-width: 767px){
+    .factura-carrito-container{
+        display:flex;
+        flex-direction: column;
+        border: none;
+    }
+    .header-carrito{
+        margin-left: 12%;
+    }
+    .borrar-boton-carrito{
+        margin-left: 90px;
+        padding: 0 10px 0 10px;
+        transition: all 0.3s;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: 900;
+    }
+    .volver-boton-carrito{
+        padding: 0 10px 0 5px;
+        font-size: 17px;
+        font-weight: 500;
+        margin-left: 6%;
+    }
+    .factura-container{
+        margin-left: 6%;
+        margin-top: 6.5%;
+        padding-left: 5%;
+        border: none;
+        
+    }
+    .total{
+        margin-top: 40px;
+    }
+    .total-total{
+        margin-right: 30%;
+    }
+    .boton-finalizar-compra{
+        margin-left: 5%;
+        width: 80%;
+    }
 }
