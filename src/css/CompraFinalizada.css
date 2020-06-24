@@ -17,3 +17,19 @@
 #little-space{
     margin-left: 80px;
 }
+
+@media (min-width: 375px) and (max-width: 767px) {
+    
+    .compraFinalizada-container{
+        margin-left: 0;
+        margin-top: 150px;
+    }
+    .volver-home{
+        margin-left: 120px;
+    }
+
+    #espacio-mobile{
+        margin-left: 22px;
+        width: 87%;
+    }
+}

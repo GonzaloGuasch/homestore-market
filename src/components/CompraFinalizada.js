@@ -46,9 +46,9 @@ export default function CompraFinalizada(props){
     return (
         <Fragment>
             <div className="compraFinalizada-container"> 
-                <div>!GRACIAS POR COMPRAR EN HOME STORE MARKET!</div>    
+                <div>!GRACIAS POR COMPRAR EN HOME STORE MARKET¡</div>    
                 <div id="little-space">SU FACTURA ESTA EN El EMAIL</div>
-                <div> Cualquier duda o consulta comuniquese con nosotros </div> 
+                <div id="espacio-mobile"> Cualquier consulta comuniquese con nosotros </div> 
                 {puedeVolver && <input  type="button" 
                                         value="Volver al inicio"
                                         className="volver-home"
