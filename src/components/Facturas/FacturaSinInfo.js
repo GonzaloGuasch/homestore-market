@@ -92,8 +92,8 @@ export default class FacturaSinInfo extends React.Component{
    
     enviarFactura(){
         this.borrarErroresViejos()
-        if(false) { //this.hayCamposVacios()){
-            this.displayError('!No dejes campos vacios!')
+        if(this.hayCamposVacios()){
+            this.displayError('!No dejes campos vacios¡')
             return
         }
         if(false){ //!this.esEmailValido()){
@@ -341,7 +341,8 @@ export default class FacturaSinInfo extends React.Component{
                                             value={this.state.codigoPostal}></input></div>
                             </div>
                         </div>
-                      
+                        
+                            
                             { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
                             <div className="flex-buttons">
                                 <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio">
