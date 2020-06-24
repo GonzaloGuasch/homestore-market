@@ -2,7 +2,7 @@ import React from 'react'
 import '../css/Header.css'
 import psuudoloPresentable from '../images/logo_ejemplo.png'
 import email from '../images/email.svg'
-import phone from '../images/phone.svg'
+import phone from '../images/greenPhone.svg'
 import carrito from '../images/carrito.svg'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
@@ -96,21 +96,24 @@ cantidadDeProductosEnCarrito(){
                        <div className="logIn-register-container">
                            {this.state.isLog ? <a href="/Pedidos">Pedidos</a> : <a href="/LogIn-Register">Unirse/Ingresar</a>}
                        </div>
-                       <div className="contacto-container">
-                           <img src={email} className="logo-email" alt="img-email"></img>
-                           Contactar
+                       <div className="carrito-container">
+                            <div className="carrito-cantidad-wrapper">
+                                <div className="carrito-wrapper">
+                                    <a href="/Carrito"> <img src={carrito} className="logo-email" alt="img-carrito"></img></a>
+                                </div>
+                                <div className="cantidad-wrapper">{this.cantidadDeProductosEnCarrito()}</div>
+                            </div>
                        </div>
+
+                       <div className="contacto-container">
+                           <a href="mailto:soytumarket@gmail.com"><img src={email} className="logo-email" alt="img-email"></img></a>
+                       </div>
+
                        <div className="telefono-container">
                        <img src={phone} className="logo-email" alt="img-phone"></img>
                           5555-5555
                        </div>
-                       <div className="carrito-container">
-                       <img src={carrito} className="logo-email" alt="img-carrito"></img>
-                            <div className="carrito-cantidad-wrapper">
-                                <div className="carrito-wrapper"><a href="/Carrito">Carrito</a></div>
-                                <div className="cantidad-wrapper">{this.cantidadDeProductosEnCarrito()}</div>
-                            </div>
-                       </div>
+                      
          
           </div>
        </div>
