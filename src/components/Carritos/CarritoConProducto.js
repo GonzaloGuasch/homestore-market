@@ -44,8 +44,7 @@ export default class CarritoConProducto extends React.Component{
         })
     }
     render() {
-      const producotsEnCarro = this.state.productos.map((UnProducto, i) => 
-            <ProductoEnCarro info={UnProducto}/>)
+      const producotsEnCarro = this.state.productos.map((unProducto, unaKey) => <ProductoEnCarro info={unProducto}/>)
       let valorTotal = 0
       this.state.productos.map((unProducto, i) => valorTotal = valorTotal + unProducto.precio * unProducto.cantidad)
         return (
@@ -55,7 +54,7 @@ export default class CarritoConProducto extends React.Component{
                 <div className="factura-carrito-container">
                     <div>
                         <div className="header-carrito">
-                        <div>Nombre Producto</div>
+                        <div id="nombreProducto-mobile">Nombre Producto</div>
                         <div className="precio-carrito">Precio</div>
                         <div className="cantidad-producto-carrito">Cantidad</div>
                         <div className="precio-total">Total</div>

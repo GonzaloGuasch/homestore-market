@@ -60,7 +60,7 @@
     color: black;
 }
 
-@media all and (max-width:30em){
+@media (min-width: 375px) and (max-width:30em){
     .ver-mas-button{
         display:block;
         margin: 0.2em auto;

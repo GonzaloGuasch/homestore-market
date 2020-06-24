@@ -137,8 +137,8 @@ export default class FacturaSinInfo extends React.Component{
                     },
                     username: JSON.parse(localStorage.getItem("usuario")).username
             }
-        })  .then(res => localStorage.setItem("usuario", JSON.stringify(res.data)))
-            .catch(e => console.log(e))
+        }).then(res => localStorage.setItem("usuario", JSON.stringify(res.data)))
+          .catch(e => console.log(e))
 
         axios({
             method: 'post',
@@ -148,8 +148,8 @@ export default class FacturaSinInfo extends React.Component{
                 productos: JSON.parse(localStorage.getItem("productos")),
                 nombreUsuario: JSON.parse(localStorage.getItem("usuario")).username
             }
-        })  .then(res => this.handleMercadoPago(res.data))
-            .catch(e => console.log(e))
+        }).then(res => this.handleMercadoPago(res.data))
+          .catch(e => console.log(e))
     }
     comprarComoGuest(){
         localStorage.setItem("emailGuest", this.state.email)
@@ -163,8 +163,8 @@ export default class FacturaSinInfo extends React.Component{
                 productos: JSON.parse(localStorage.getItem("productos")),
                 nombreUsuario: 'Guest'
             }
-        })  .then(res => this.handleMercadoPago(res.data))
-            .catch(e => console.log(e))
+        }).then(res => this.handleMercadoPago(res.data))
+          .catch(e => console.log(e))
     }
 
     handleMercadoPago(url){
@@ -244,63 +244,71 @@ export default class FacturaSinInfo extends React.Component{
                     Detalles de facturación
                 </div>
                 <div className="aviso-usuario">Si ingreso como usuario al llenar la factura se guardaron los datos para futuras compras</div>
-            <div className="a">
+            <div className="flex-container-page">
                     <div className="datos-container">
                         <div className="fila-container">
                             <div className="fila-uno-container">
-                            <div className="texto-factura-info">Nombre</div>
-                            <div><input type="text" className="box-shadow" 
+                                <div className="texto-factura-info">Nombre</div>
+                                    <div><input type="text" className="box-shadow" 
                                         onChange={this.updateNombre} 
                                         value={this.state.nombre}>
-                                        </input></div>
+                                        </input>
+                                    </div>
                             </div>
-                            <div>
-                                <div className="texto-factura-info">Apellido</div>
-                                <div><input type="text" className="box-shadow"
+                                <div>
+                                    <div className="texto-factura-info">Apellido</div>
+                                        <div><input type="text" className="box-shadow"
                                             onChange={this.updateApellido}
                                             value={this.state.apellido}>
-                                            </input></div>
-                            </div>
+                                            </input>
+                                        </div>
+                                </div>
                         </div>
-                        <div className="fila-container" id="segunda-fila">
-                            <div className="fila-uno-container">
-                                <div className="texto-factura-info">Pais</div>
-                                <div><input type="text" className="box-shadow" 
-                                            onChange={this.updatePais}
-                                            value={this.state.pais}>
-                                    </input></div>
-                            </div>
-                            <div className="fila-uno-container">
-                                <div className="texto-factura-info">Provincia</div>
-                                <div><input type="text" className="box-shadow"
-                                            onChange={this.updateProvincia}
-                                            value={this.state.provincia}>
-                                    </input></div>
-                            </div>
-                            <div>
-                                <div className="texto-factura-info">Localidad</div>
-                                <div><input type="text" className="box-shadow"
-                                            onChange={this.updateLocalidad}
-                                            value={this.state.localidad}>
-                                                </input></div>
-                            </div>
+                            <div className="fila-container" id="segunda-fila">
+                                <div className="fila-uno-container">
+                                    <div className="texto-factura-info">Pais</div>
+                                        <div><input type="text" className="box-shadow" 
+                                                                onChange={this.updatePais}
+                                                                value={this.state.pais}>
+                                            </input>
+                                        </div>
+                                </div>
+                                     <div className="fila-uno-container">
+                                         <div className="texto-factura-info">Provincia</div>
+                                            <div><input type="text" className="box-shadow"
+                                                                    onChange={this.updateProvincia}
+                                                                    value={this.state.provincia}>
+                                                  </input>
+                                            </div>
+                                     </div>
+                                <div>
+                                    <div className="texto-factura-info">Localidad</div>
+                                        <div><input type="text" className="box-shadow"
+                                                                onChange={this.updateLocalidad}
+                                                                value={this.state.localidad}>
+                                             </input>
+                                        </div>
+                                </div>
                         
-                        </div>
-                        <div className="fila-container" id="segunda-fila">
-                            <div className="fila-uno-container">
-                                <div className="texto-factura-info">Direccion</div>
-                                <div><input type="text" className="box-shadow"
-                                            onChange={this.updateDireccion}
-                                            value={this.state.direccion}
-                                            ></input></div>
                             </div>
-                            <div>
-                                <div className="texto-factura-info">Observaciones</div>
-                                <div><input type="text" placeholder="Piso, depto, etc" className="box-shadow"
-                                            onChange={this.updateObservaciones}
-                                            value={this.state.observaciones}
-                                            ></input></div>
-                            </div>
+                                <div className="fila-container" id="segunda-fila">
+                                    <div className="fila-uno-container">
+                                        <div className="texto-factura-info">Direccion</div>
+                                            <div><input type="text" className="box-shadow"
+                                                                    onChange={this.updateDireccion}
+                                                                    value={this.state.direccion}>
+                                                </input>
+                                            </div>
+                                        </div>
+
+                                <div>
+                                    <div className="texto-factura-info">Observaciones</div>
+                                        <div><input type="text" placeholder="Piso, depto, etc" className="box-shadow"
+                                                    onChange={this.updateObservaciones}
+                                                    value={this.state.observaciones}>
+                                            </input>
+                                        </div>
+                                </div>
                         </div>
                         <div className="fila-container" id="segunda-fila">
                             <div className="fila-uno-container">
@@ -334,24 +342,21 @@ export default class FacturaSinInfo extends React.Component{
                             </div>
                         </div>
                       
-                        
-                        { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
-                <div className="flex-buttons">
-                <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio"></input>
+                            { this.state.showError && <div className="error-factura">{this.state.errorMessage}</div>}
+                            <div className="flex-buttons">
+                                <input type="button" onClick={this.calcularValor} value="CALCULAR ENVIO" className="calcular-envio">
+                                </input>
                 
-                {this.state.loading ? <Loader type="Oval" color="white" height={25} width={100} className="spinner-finalizar-compra"/> :
-                                      <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
-                                      onClick={this.enviarFactura}/>
-                }
+                             {this.state.loading ? <Loader type="Oval" color="white" height={25} width={100} className="spinner-finalizar-compra"/> :
+                                                    <input  type="button" value="FINALIZAR COMPRA" className="finalizar-compra-button"
+                                                    onClick={this.enviarFactura}/>}
+                            </div>
                 </div>
-                    </div>
               
                        
                     <div className="metodo-pago-container">
                         <div className="elementos-factura">
-                        <div className="tu-pedido">
-                            TU PEDIDO 
-                        </div>
+                            <div className="tu-pedido"> TU PEDIDO </div>
                         <div className="factura-producto-precio">
                             <div className="inception">
                                 <div id="producto">PRODUCTO</div>
@@ -361,14 +366,14 @@ export default class FacturaSinInfo extends React.Component{
                         <div className="inception">
                                 <div id="envio">Envio</div>
                                 <div>{this.state.valorEnvio ? <div id="costo-envio">{this.state.valorEnvio}</div> : 'No calculaste el envio'}</div>
-                            </div>
+                        </div>
                         <div className="inception">
                             <div id="valor">valor total</div>
                             <div> {this.state.valorEnvio ? 
                                         <div id="costo-con-envio">{this.state.valorTotal + parseInt(this.state.valorEnvio)}</div> : 
                                         <div id="costo-sin-envio">{this.state.valorTotal}</div>}
                         </div>
-                        </div>
+                    </div>
                         
                     </div>   
                     </div>

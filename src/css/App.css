@@ -2,7 +2,7 @@
     display: flex;
 }
 
-@media (min-width: 411px) and (max-width: 767px) {
+@media (min-width: 375px) and (max-width: 480px) {
     .categorias-de-app{
         flex-direction: column;
         margin-left: 12%;

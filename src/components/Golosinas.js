@@ -5,7 +5,6 @@ import axios from 'axios'
 import BarraBusqueda from './BarraBusqueda'
 import UnProducto from './UnProducto.js'
 import Boton from '../components/WppButton'
-import ErrorWindow from '../components/Error/ErrorWindow.js'
 
 export default class Golosinas extends React.Component{
     constructor(props){

@@ -32,6 +32,6 @@ border-bottom: 2px solid grey;
 .red-container{
     margin-right: 25%;
 }
-@media (min-width: 411px) and (max-width: 767px) {
+@media (min-width: 375px) and (max-width: 767px) {
 
 }

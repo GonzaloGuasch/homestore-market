@@ -100,8 +100,9 @@
     text-transform: uppercase;
 }
 
-.a{
+.flex-container-page{
     display: flex;
+    flex-direction: column-reverse
 }
 
 
@@ -178,4 +179,27 @@
 .aviso-usuario{
     margin-left: 130px;
     font-weight: 700;
+}
+
+
+@media (min-width: 375px) and (max-width: 767px){
+
+    .aviso-usuario{
+        margin-left: 32px;
+        font-weight: 700;
+    }
+    .finalizar-compra{
+        margin-left: 8%;
+    }
+    .detalles-compra{
+        margin-left: 8%;
+    }
+    .metodo-pago-container{
+        height: 80%;
+        width: 85%;
+        padding-left: 1%;
+        margin-top: 5%;
+        margin-left: 31px;
+        margin-right: 10px;
+    }
 }

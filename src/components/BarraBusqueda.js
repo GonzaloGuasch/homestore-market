@@ -4,7 +4,6 @@ import '../css/BarraBusqueda.css'
 
 export default function BarraBusqueda(){
 
-    const alimentos = `Alimentos`;
     return(
         <div className="category-container">
         <ul className="list-container">

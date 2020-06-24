@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import XLSX from 'xlsx';
 import { make_cols } from '../Excel_reader/MakeColumn';
-import { SheetJSFT } from '../Excel_reader/types';
 import axios from 'axios'
 import '../../css/ActualizarProductos.css'
 import modelo from '../../images/modeloExcel.png'
@@ -71,7 +70,7 @@ export default class ExcelReader extends React.Component{
             <img src={modelo} alt="modelo"></img>
             <br/>
             <br/>
-            <input type="file"  className="form-control" id="file" accept={SheetJSFT} onChange={this.handleChange} />
+            <input type="file"  className="form-control" id="file" onChange={this.handleChange} />
             <br/>
             <input type='submit' 
               value="Actualizar Productos"

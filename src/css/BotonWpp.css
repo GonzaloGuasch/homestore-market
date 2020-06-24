@@ -17,7 +17,7 @@
     margin-right: 3px;
 }
 
-@media (min-width: 411px) and (max-width: 767px) {
+@media (min-width: 375px) and (max-width: 767px) {
     .wpp-boton{
         display: none;
     }

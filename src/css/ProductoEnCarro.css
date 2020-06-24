@@ -11,6 +11,7 @@
     margin-left: 50px;
     color:#5c9971;
     font-weight: 450;
+    
 }
 
 .cantidad-en-carro{
@@ -22,7 +23,7 @@
 }
 
 .nombreDeProducto{
-    width: 200px;
+    width: 100%;
 }
 
 .x-button{
@@ -35,10 +36,26 @@
     margin-right: 4px;
 }
 
-@media (min-width: 411px) and (max-width: 767px){
+@media (min-width: 375px) and (max-width: 767px){
 
     .producto-en-carro-description{
         margin-left: 5%;
     }   
-
+    .nombreDeProducto{
+        width: 33%;
+        font-size: 14px;
+        margin-right: 0;
+    }
+    .produto-en-carro-precio{
+        margin-left: 0;
+    }
+    .cantidad-en-carro{
+        margin-left: 32px;
+    }
+    .precioTotal-en-carro{
+        margin-left: 32px;
+    }
+    .nombreDeProducto{
+        font-size: 12px;
+    }
 }
