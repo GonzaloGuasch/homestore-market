@@ -14,7 +14,7 @@
 }
 
 .pedidos-viejos{
-    margin-left: 5.5%;
+    margin-left: 0;
     color: #7b7b7b;
     margin-bottom: 10%;
 }
@@ -26,4 +26,8 @@
 
 #aviso{
     margin-left: 435px;
+}
+
+.perfil-usuario-container{
+    margin-left: 65px;
 }

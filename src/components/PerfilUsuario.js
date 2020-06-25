@@ -28,14 +28,16 @@ export default class PerfilUsuario extends React.Component{
             <Fragment>
                 <Header></Header>
                 <BarraBusqueda></BarraBusqueda>
-                <div className="username">{JSON.parse(localStorage.getItem("usuario")).username}</div>
-                <div className="email-user-profile">MAIL: {JSON.parse(localStorage.getItem("usuario")).email}</div>
-                <div className="pedidos-viejos">PEDIDOS ANTIGUOS: 
-                    <div className="aviso">Puede repetir sus pedidos antiguos y ademas</div>
-                    <div className="aviso" id="aviso">cambiar la cantidad que desea comprar</div>
-                    {oldPedidos}
+                <div className="perfil-usuario-container">
+                    <div className="username">{JSON.parse(localStorage.getItem("usuario")).username}</div>
+                    <div className="email-user-profile">MAIL: {JSON.parse(localStorage.getItem("usuario")).email}</div>
+                    <div className="email-user-profile">PEDIDOS ANTIGUOS:</div>  
+                    <div className="pedidos-viejos">
+                        <div className="aviso">Puede repetir sus pedidos antiguos y ademas</div>
+                        <div className="aviso" id="aviso">cambiar la cantidad que desea comprar</div>
+                            {oldPedidos}
+                    </div>
                 </div>
-        
             </Fragment>
         );
     }
