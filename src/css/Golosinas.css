@@ -50,7 +50,7 @@ a:hover {
     background-color:#feae17;
     color: white;
     border-style: none;
-    border-radius: 50%;
+    border-radius: 10px;
     padding-bottom: 5px;
     margin-right: 1%;
     transition: all 0.4s;
