@@ -16,7 +16,9 @@ export default class Categoria extends React.Component{
     render(){
         return(
             <div className="categoria-container">
-               {this.props.categoria}
+                <div className="nombre-categoria-color">
+                    {this.props.categoria}
+               </div>
             <div>
                 <input type="button" value="VER MÁS"  className="ver-mas-button" onClick={this.sentTo}/>
                 </div>

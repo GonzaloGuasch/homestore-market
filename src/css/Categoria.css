@@ -1,7 +1,6 @@
 .categoria-container{
     text-transform: uppercase;
-    font-weight: bolder;
-    color: black;
+    font-weight: 700;
     margin-top: 65px;
     margin-right: 16px;
     margin-left: 15px;
@@ -18,7 +17,9 @@
     background-image: url('../images/ositos_gominola.jpg');
 
 }
-
+.nombre-categoria-color{
+    color: black;
+}
 .categoria-container:hover{
     color: #feae17;
     -moz-transform: translate(-2px, -2px);
@@ -31,24 +32,25 @@
     box-shadow: 1px 3px 15px 8px rgba(0,0,0,0.75);
 
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+
 }
 
 
 .ver-mas-button{
     background-color:#feae17;
     border-radius: 2em;
-    box-sizing: border-box;
-    text-decoration:none;
+  
     font-family:'Roboto',sans-serif;
-    font-weight:300;
+    font-weight:100;
     font-size: 12px;
     border-color: #f1a516;
-    color: white;
+
     padding-top: 4px;
     padding-bottom: 5px;
     transition: all 0.9s;
     margin-top: 10px;
+    color:white;
+
     border-style: solid;
 
   
@@ -57,7 +59,6 @@
 
 .ver-mas-button:hover{
     background-color: #ab7324;
-    color: black;
 }
 
 @media (min-width: 375px) and (max-width:30em){

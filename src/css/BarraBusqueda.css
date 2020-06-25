@@ -2,12 +2,14 @@
     background-color: #f1f1f1;
     display: flex;
     height: 40px;
+
   }
   .list-container{
     margin-left: 0;
   }
   li {
     display: inline;
+    
   }
   ul {
     list-style-type: none;
@@ -25,6 +27,7 @@
     padding-right: 5%;
     padding-top: 15px;
     border: none;
+    
   }
   
   li > a:hover{
@@ -32,23 +35,7 @@
   }
 
   @media (min-width: 375px) and (max-width: 767px) {
-    .category-container{
-      height: 100%;
-      width: 100%;
-    }
     .list-container{
-      margin-left: 0.1%;
+      display: none;
     }
-    li > a {
-      font-size: 11px;
-      font-weight: 700;
-      margin-right: 3%;
-      margin-left: 0;
-      padding-right: 0;
-    }
-    
-    ul{
-      width: 100%;
-    }
-    li{}
   }
