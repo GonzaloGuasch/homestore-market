@@ -31,3 +31,29 @@
 .perfil-usuario-container{
     margin-left: 65px;
 }
+
+
+@media (min-width: 375px) and (max-width: 767px){
+
+    .perfil-usuario-container{
+        margin-left: 0;
+    }
+
+    .username{
+        margin-left: 5%;
+    }
+    .pedidos-viejos{
+       margin-bottom: 0;
+    }
+
+    .aviso{
+        margin-left: 22px; 
+    }
+    
+    #aviso{
+        margin-left: 22px;
+    }
+
+}
+
+

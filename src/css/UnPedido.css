@@ -1,9 +1,7 @@
 .Pedido-container{
     border: 2px solid #eeeeee;
     width: 50%;
-    margin-top: 0.5%;
-    margin-left: 25%;
-    margin-bottom: 1%;
+    margin: 0.5% 0 1% 25%; 
     padding: 10px 0px 7px 20px;
 }
 
@@ -34,4 +32,34 @@
 .cantidad-input{
     width: 50px;
     padding-left: 5%;
+}
+
+
+
+@media (min-width: 375px) and (max-width: 767px){
+    .Pedido-container{
+        width: 95%;
+        margin: 7% 0 5% 2%;
+        padding: 10px 0px 7px 20px;
+    }
+    .nombre-cantidad{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .a{
+        font-weight: 800;
+    }
+    .pedido-button{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .button-repetir-pedido-container{
+        margin: 6% 0 2% 21%;
+    }
+
+    
 }
