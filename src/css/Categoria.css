@@ -12,13 +12,13 @@
     font-size: 20px;
 
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-color: black;
 
-    background-image: url('../images/ositos_gominola.jpg');
+    background-image: url('../images/golosina4.jpg');
 
 }
 .nombre-categoria-color{
-    color: black;
+    color: white;
 }
 .categoria-container:hover{
     color: #feae17;
@@ -49,12 +49,10 @@
     padding-bottom: 5px;
     transition: all 0.9s;
     margin-top: 10px;
-    color:white;
-
+    
     border-style: solid;
 
   
-    -webkit-text-stroke-color: none;
 }
 
 .ver-mas-button:hover{

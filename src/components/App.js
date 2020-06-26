@@ -6,6 +6,7 @@ import Carrusel from '../components/Carrusel'
 import BarraBusqueda from '../components/BarraBusqueda'
 import Categoria from '../components/Categoria'
 import golosina from '../images/golosina.jpg'
+import golosina2 from '../images/golosina4.jpg'
 import Boton from '../components/WppButton'
 
 export default class App extends React.Component {
@@ -21,7 +22,7 @@ export default class App extends React.Component {
        <Carrusel></Carrusel>
        <div className="categorias-de-app">
        <Categoria categoria={"ALIMENTOS"} imagen={golosina} history ={this.props.history}/>
-       <Categoria categoria={"BEBIDAS"}  history ={this.props.history}/>
+       <Categoria categoria={"BEBIDAS"}  imagen={golosina2} history ={this.props.history}/>
        <Categoria categoria={"CHOCOLATES"}  history ={this.props.history}/>
        <Categoria categoria={"ESPECIAS"}  history ={this.props.history}/>
        <Categoria categoria={"GALLETAS Y CEREALES"}  history ={this.props.history}/>

@@ -12,13 +12,11 @@
     right: 2%; 
 }
 
-a {
-    
-}
 
 .wpp-pop-up{
     height: 17px;
     margin-right: 3px;
+    text-decoration: none;
 }
 
 @media (min-width: 375px) and (max-width: 767px) {
