@@ -80,10 +80,12 @@
     border-bottom: 1px solid #ececec;
     margin-top: 15%;
     margin-left: 24%;
-    width: 80%;
+    width: 125%;
     display: flex;
 }
-
+.nombreProducto-mobile{
+    margin-right: 400px;
+}
 .precio-carrito{
     margin-left: 14%;
 }

@@ -44,7 +44,7 @@
 .nombre-container{
     color:#617d43;
     text-transform: lowercase;
-
+    height: 50px;
 }
 .valor-container{
     font-weight: 660;
@@ -53,6 +53,7 @@
 .contador-container{
     margin-top: 5px;
     display: flex;
+
 }
 
 .value-container{

@@ -8,22 +8,22 @@
 }
 
 .produto-en-carro-precio{
-    margin-left: 50px;
+    padding-right: 80px;
     color:#5c9971;
     font-weight: 450;
     
 }
 
 .cantidad-en-carro{
-    margin-left: 75px;
+    text-align: center;
 }
 
 .precioTotal-en-carro{
-    margin-left: 80px;
+    text-align: center;
 }
 
 .nombreDeProducto{
-    width: 100%;
+    width: 300px;
 }
 
 .x-button{

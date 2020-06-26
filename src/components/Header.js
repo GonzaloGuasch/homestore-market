@@ -37,7 +37,7 @@ export default function Header(){
                                 </input>
                     </div>
                         <div className="iconos-container">
-                            <div className="unIcono-container">
+                            <div className="unIcono-container" id="perfilUsuario">
                                 {isLog ?    <a href="/Pedidos">Pedidos</a> : 
                                             <a href="/LogIn-Register">Unirse/Ingresar</a>}
                             </div>
